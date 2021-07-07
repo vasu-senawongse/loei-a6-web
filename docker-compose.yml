@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  fifathailand-vuejs-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: data-a6
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - ./docker/nginx:/etc/nginx/config.d
+    ports:
+      - '8080:8080'
+
+networks:
+  default:
+    external:
+      name: fifathailand-net

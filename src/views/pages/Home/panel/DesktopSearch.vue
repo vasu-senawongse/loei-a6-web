@@ -1,0 +1,344 @@
+<template>
+  <div>
+    <div class="home-body">
+      <b-row class="home-search justify-content-center">
+        <b-col md="4" cols="12" class="form-background">
+          <b-row class="justify-content-center">
+            <b-col md="9" cols="12" class="pt-3">
+              <div>
+                <div class="text-center pt-3">
+                  <h4>ค้นหาข้อมูลแหล่งท่องเที่ยว</h4>
+                </div>
+
+                <b-input-group class="my-4">
+                  <b-form-select
+                    alternative
+                    addon-left-icon="ni
+            ni-lock-circle-open"
+                    v-model="district"
+                    style="height : 40px"
+                    :options="options"
+                  />
+
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 40px"
+                      ><i class="fa fa-map-marker"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <b-input-group class="my-4">
+                  <b-form-select
+                    alternative
+                    addon-left-icon="ni
+            ni-lock-circle-open"
+                    v-model="category"
+                    style="height : 40px"
+                    :options="types"
+                  />
+
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 40px"
+                      ><i class="far fa-object-group"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <b-input-group>
+                  <b-form-input
+                    alternative
+                    type="text"
+                    placeholder="ชื่อแหล่งท่องเที่ยว"
+                    v-model="location"
+                    style="height : 40px"
+                  >
+                  </b-form-input>
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 40px"
+                      ><i class="fa fa-search"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <div class="text-center">
+                  <b-button class="my-4 w-100" variant="info" @click="search()"
+                    >ค้นหา</b-button
+                  >
+                </div>
+              </div>
+            </b-col>
+          </b-row></b-col
+        >
+        <b-col md="4" cols="12" class="form-background">
+          <b-row class="justify-content-center">
+            <b-col md="9" cols="12" class="pt-3">
+              <div>
+                <div class="text-center pt-3">
+                  <h5>
+                    ค้นหาแหล่งท่องเที่ยวที่สนใจ
+                  </h5>
+                  <h5>
+                    เลือกหมวดหมู่ของแหล่งท่องเที่ยวที่แนะนำด้านล่าง
+                  </h5>
+                </div>
+              </div>
+            </b-col>
+          </b-row>
+          <b-row class="justify-content-center text-center my-4">
+            <b-col md="3" cols="12">
+              <div>
+                <i
+                  class="fas fa-hotel rounded-icon"
+                  :style="
+                    choices[0].value == false
+                      ? { 'background-color': 'gray' }
+                      : { 'background-color': choices[0].color }
+                  "
+                  @click="
+                    choices[0].value == false
+                      ? (choices[0].value = true)
+                      : (choices[0].value = false)
+                  "
+                />
+              </div>
+              <div>
+                ที่พัก
+              </div></b-col
+            >
+            <b-col md="3" cols="12">
+              <div>
+                <i
+                  class="fas fa-utensils rounded-icon"
+                  :style="
+                    choices[1].value == false
+                      ? { 'background-color': 'gray' }
+                      : { 'background-color': choices[1].color }
+                  "
+                  @click="
+                    choices[1].value == false
+                      ? (choices[1].value = true)
+                      : (choices[1].value = false)
+                  "
+                />
+              </div>
+              <div>
+                ร้านอาหาร
+              </div></b-col
+            >
+            <b-col md="3" cols="12">
+              <div>
+                <i
+                  class="fa fa-map-marker rounded-icon"
+                  :style="
+                    choices[2].value == false
+                      ? { 'background-color': 'gray' }
+                      : { 'background-color': choices[2].color }
+                  "
+                  @click="
+                    choices[2].value == false
+                      ? (choices[2].value = true)
+                      : (choices[2].value = false)
+                  "
+                />
+              </div>
+              <div>
+                แหล่งท่องเที่ยว
+              </div></b-col
+            >
+          </b-row>
+          <b-row class="justify-content-center text-center">
+            <b-col md="3" cols="12">
+              <div>
+                <i
+                  class="fa fa-coffee rounded-icon"
+                  :style="
+                    choices[3].value == false
+                      ? { 'background-color': 'gray' }
+                      : { 'background-color': choices[3].color }
+                  "
+                  @click="
+                    choices[3].value == false
+                      ? (choices[3].value = true)
+                      : (choices[3].value = false)
+                  "
+                />
+              </div>
+              <div>
+                คาเฟ่
+              </div></b-col
+            >
+            <b-col md="3" cols="12">
+              <div>
+                <i
+                  class="fa fa-gift rounded-icon"
+                  :style="
+                    choices[4].value == false
+                      ? { 'background-color': 'gray' }
+                      : { 'background-color': choices[4].color }
+                  "
+                  @click="
+                    choices[4].value == false
+                      ? (choices[4].value = true)
+                      : (choices[4].value = false)
+                  "
+                />
+              </div>
+              <div>
+                ของฝาก
+              </div></b-col
+            >
+            <b-col md="3" cols="12">
+              <div>
+                <i
+                  class="fas fa-store rounded-icon"
+                  :style="
+                    choices[5].value == false
+                      ? { 'background-color': 'gray' }
+                      : { 'background-color': choices[5].color }
+                  "
+                  @click="
+                    choices[5].value == false
+                      ? (choices[5].value = true)
+                      : (choices[5].value = false)
+                  "
+                />
+              </div>
+              <div>
+                จุดแวะ
+              </div></b-col
+            >
+          </b-row>
+        </b-col>
+      </b-row>
+    </div>
+
+    <div class="my-5">
+      <div class="text-center text-danger" v-if="isBusy == true">
+        <b-spinner class="align-middle m-2"></b-spinner>
+        <strong>กำลังค้นหา...</strong>
+      </div>
+      <b-container v-if="isBusy == false">
+        <b-row>
+          <b-col
+            md="12"
+            cols="12"
+            v-for="(p, index) in filter"
+            v-bind:key="index"
+          >
+            <b-card
+              :img-src="p.img"
+              img-alt="Card image"
+              img-left
+              img-height="200"
+              img-width="300"
+              class="mb-3"
+            >
+              <b-card-text
+                ><h2>{{ p.name }}</h2></b-card-text
+              >
+
+              <b-card-text> Location: {{ p.location }} </b-card-text>
+              <b-card-text>
+                โทร: 081-234-5678
+              </b-card-text>
+              <b-button variant="info" class="m-1">ดูรายละเอียด</b-button>
+              <a
+                :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
+                target="_blank"
+              >
+                <b-button variant="outline-info" class="m-1"
+                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
+                ></a
+              >
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: 'home',
+  data() {
+    return {
+      location: null,
+      district: 'ทุกอำเภอ',
+      category: 'ทุกประเภท',
+      isBusy: false,
+      options: [
+        'ทุกอำเภอ',
+        'เชียงคาน',
+        'เมืองเลย',
+        'เอราวัณ',
+        'ด่านซ้าย',
+        'ท่าลี่',
+        'นาแห้ว',
+        'นาด้วง',
+        'ปากชม',
+        'ผาขาว',
+        'ภูเรือ',
+        'ภูกระดึง',
+        'ภูหลวง',
+        'วังสะพุง',
+        'หนองหิน',
+      ],
+      types: [
+        'ทุกประเภท',
+        'ธรรมชาติ',
+        'ประวัติศาสตร์',
+        'วัฒนธรรม',
+        'วิทยาศาสตร์',
+      ],
+      choices: [
+        { color: 'pink', value: true },
+        { color: 'violet', value: true },
+        { color: 'orange', value: true },
+        { color: '#BDA55D', value: true },
+        { color: '#FFD300', value: true },
+        { color: '#3DED97', value: true },
+      ],
+      result: [
+        {
+          img:
+            'https://img.kapook.com/u/2019/Tanapol/travel/august/phukadeung/p1.jpg',
+          location: 'ตำบลศรีฐาน อำเภอภูกระดึง จังหวัดเลย',
+          district: 'ภูกระดึง',
+          name: 'อุทยานแห่งชาติภูกระดึง',
+          lat: '16.8712676',
+          lon: '101.8452335',
+        },
+        {
+          img:
+            'http://i-san.tourismthailand.org/wp-content/uploads/2018/12/%E0%B9%81%E0%B8%81%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%B8%E0%B8%94%E0%B8%84%E0%B8%B9%E0%B9%89-6.jpg',
+          location: 'ตำบลเชียงคาน อำเภอเชียงคาน จังหวัดเลย',
+          district: 'เชียงคาน',
+          name: 'แก่งคุดคู้',
+          lat: '17.9065128',
+          lon: '101.7019328',
+        },
+        {
+          img:
+            'https://travel.mthai.com/app/uploads/2014/08/%E0%B8%A2%E0%B8%AD%E0%B8%94%E0%B8%A0%E0%B8%B9%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD.jpg',
+          location: 'ตำบลหนองบัว อำเภอภูเรือ จังหวัดเลย',
+          district: 'ภูเรือ',
+          name: 'อุทยานแห่งชาติภูเรือ',
+          lat: '17.5141787',
+          lon: '101.3450594',
+        },
+      ],
+      filter: [],
+    };
+  },
+  methods: {
+    async search() {
+      this.isBusy = true;
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      if (this.district == 'ทุกอำเภอ') this.filter = this.result;
+      else this.filter = this.result.filter((i) => i.district == this.district);
+      this.isBusy = false;
+    },
+  },
+  async mounted() {},
+};
+</script>
