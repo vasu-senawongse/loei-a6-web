@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  fifathailand-vuejs-web:
+  loei-a6-web:
     build:
       context: .
       dockerfile: Dockerfile
