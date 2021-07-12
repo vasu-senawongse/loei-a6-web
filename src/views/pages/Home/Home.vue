@@ -248,7 +248,10 @@
                     ><h2>{{ p.name }}</h2></b-card-text
                   >
 
-                  <b-card-text> Location: {{ p.location }} </b-card-text>
+                  <b-card-text>
+                    ที่ตั้ง:
+                    {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
+                  </b-card-text>
                   <b-card-text>
                     โทร: 081-234-5678
                   </b-card-text>
@@ -495,7 +498,10 @@
                     ><h3>{{ p.name }}</h3></b-card-text
                   >
 
-                  <b-card-text>{{ p.location }} </b-card-text>
+                  <b-card-text
+                    >ที่ตั้ง:
+                    {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
+                  </b-card-text>
                   <b-card-text>
                     โทร: 081-234-5678
                   </b-card-text>
