@@ -529,12 +529,12 @@ export default {
   name: 'home',
   data() {
     return {
-      location: null,
-      district: 'ทุกอำเภอ',
-      category: 'ทุกประเภท',
+      location: '',
+      district: '',
+      category: '',
       isBusy: false,
       options: [
-        'ทุกอำเภอ',
+        { text: 'ทุกอำเภอ', value: '' },
         'เชียงคาน',
         'เมืองเลย',
         'เอราวัณ',
@@ -551,7 +551,7 @@ export default {
         'หนองหิน',
       ],
       types: [
-        'ทุกประเภท',
+        { text: 'ทุกประเภท', value: '' },
 
         'ธรรมชาติ',
         'ประวัติศาสตร์',
@@ -577,7 +577,7 @@ export default {
         this.isSearch = true;
       }
       let res = await api.get(
-        `attractions/get-attractions-by-filter?district=${this.district}`
+        `attractions/get-attractions-by-filter?district=${this.district}&category=${this.category}&name=${this.location}`
       );
 
       this.result = res.data;
