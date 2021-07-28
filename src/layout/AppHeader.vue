@@ -1,5 +1,10 @@
 <template>
   <div>
+    <b-navbar toggleable="lg" variant="faded" type="dark"
+      ><h2 class="text-center w-100 hide-mobile" style="color : white">
+        ระบบฐานข้อมูลการท่องเที่ยวอย่างยั่งยืนในพื้นที่พิเศษเลย
+      </h2></b-navbar
+    >
     <b-navbar toggleable="lg" variant="faded" type="dark">
       <a href="/">
         <b-navbar-brand
@@ -14,6 +19,31 @@
         <b-navbar-nav>
           <b-nav-item href="/"
             ><span class="nav-text">หน้าหลัก</span></b-nav-item
+          >
+        </b-navbar-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#"
+            ><span class="nav-text">แนะนำโครงการ</span></b-nav-item
+          >
+        </b-navbar-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#"
+            ><span class="nav-text">แนะนำการใช้งาน</span></b-nav-item
+          >
+        </b-navbar-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#"
+            ><span class="nav-text">ดาวน์โหลดเอกสาร</span></b-nav-item
+          >
+        </b-navbar-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#"
+            ><span class="nav-text">หน่วยงานที่เกี่ยวข้อง</span></b-nav-item
+          >
+        </b-navbar-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#"
+            ><span class="nav-text">ติดต่อเรา</span></b-nav-item
           >
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
