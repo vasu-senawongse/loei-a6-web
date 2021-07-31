@@ -218,10 +218,7 @@
                   @click="selectedChoice = 'แหล่งท่องเที่ยว'"
                 />
               </div>
-              <div class="text-center">
-                แหล่งท่องเที่ยว
-              </div></b-col
-            >
+            </b-col>
             <b-col md="4" cols="4">
               <div>
                 <i
@@ -234,10 +231,7 @@
                   @click="selectedChoice = 'ที่พัก'"
                 />
               </div>
-              <div class="text-center">
-                ที่พัก
-              </div></b-col
-            >
+            </b-col>
             <b-col md="4" cols="4">
               <div>
                 <i
@@ -250,10 +244,7 @@
                   @click="selectedChoice = 'ร้านอาหาร'"
                 />
               </div>
-              <div class="text-center">
-                ร้านอาหาร
-              </div></b-col
-            >
+            </b-col>
           </b-row>
           <b-row class="justify-content-center">
             <b-col md="4" cols="12">
