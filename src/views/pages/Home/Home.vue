@@ -3,65 +3,58 @@
     <div class="hide-mobile">
       <div>
         <div class="home-body">
-          <b-row class="home-search justify-content-center nav-text">
+          <b-row class="home-search justify-content-center nav-text ">
             <b-col md="4" cols="12" class="form-background">
-              <b-row class="justify-content-center">
-                <b-col md="9" cols="12" class="pt-3">
-                  <div>
-                    <div class="text-center pt-3">
-                      <h5>
-                        เลือกหมวดหมู่ด้านล่าง
-                      </h5>
-                    </div>
-                  </div>
-                </b-col>
-              </b-row>
-              <b-row class="justify-content-center text-center my-4">
-                <b-col md="3" cols="12">
+              <b-row
+                class="justify-content-center text-center"
+                align-v="center"
+                style="height:100%"
+              >
+                <b-col md="4" sm="6" cols="12">
                   <div>
                     <i
                       class="fa fa-map-marker rounded-icon"
                       :style="
-                        selectedChoice != 0
+                        selectedChoice != 'แหล่งท่องเที่ยว'
                           ? { 'background-color': 'gray' }
                           : { 'background-color': choices[0].color }
                       "
-                      @click="selectedChoice = 0"
+                      @click="selectedChoice = 'แหล่งท่องเที่ยว'"
                     />
                   </div>
-                  <div>
+                  <div class="text-center">
                     แหล่งท่องเที่ยว
                   </div></b-col
                 >
-                <b-col md="3" cols="12">
+                <b-col md="4" sm="6" cols="12">
                   <div>
                     <i
                       class="fas fa-hotel rounded-icon"
                       :style="
-                        selectedChoice != 1
+                        selectedChoice != 'ที่พัก'
                           ? { 'background-color': 'gray' }
                           : { 'background-color': choices[1].color }
                       "
-                      @click="selectedChoice = 1"
+                      @click="selectedChoice = 'ที่พัก'"
                     />
                   </div>
-                  <div>
+                  <div class="text-center">
                     ที่พัก
                   </div></b-col
                 >
-                <b-col md="3" cols="12">
+                <b-col md="4" cols="12">
                   <div>
                     <i
                       class="fas fa-utensils rounded-icon"
                       :style="
-                        selectedChoice != 2
+                        selectedChoice != 'ร้านอาหาร'
                           ? { 'background-color': 'gray' }
                           : { 'background-color': choices[2].color }
                       "
-                      @click="selectedChoice = 2"
+                      @click="selectedChoice = 'ร้านอาหาร'"
                     />
                   </div>
-                  <div>
+                  <div class="text-center">
                     ร้านอาหาร
                   </div></b-col
                 >
@@ -72,7 +65,7 @@
                 <b-col md="9" cols="12" class="pt-3">
                   <div>
                     <div class="text-center pt-3">
-                      <h4>ค้นหาข้อมูลแหล่งท่องเที่ยว</h4>
+                      <h4>ค้นหาข้อมูล{{ selectedChoice }}</h4>
                     </div>
 
                     <b-input-group class="my-4">
@@ -85,7 +78,7 @@
                       >
                       </b-form-input>
                       <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 40px"
+                        <span class="input-group-text" style="width : 100%"
                           ><i class="fa fa-search"></i
                         ></span>
                       </b-input-group-prepend>
@@ -102,13 +95,16 @@
                       />
 
                       <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 40px"
+                        <span class="input-group-text" style="width : 100%"
                           ><i class="fa fa-map-marker"></i
                         ></span>
                       </b-input-group-prepend>
                     </b-input-group>
 
-                    <b-input-group class="my-4" v-if="selectedChoice == 0">
+                    <b-input-group
+                      class="my-4"
+                      v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
+                    >
                       <b-form-select
                         alternative
                         addon-left-icon="ni
@@ -119,7 +115,7 @@
                       />
 
                       <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 40px"
+                        <span class="input-group-text" style="width : 100%"
                           ><i class="far fa-object-group"></i
                         ></span>
                       </b-input-group-prepend>
@@ -206,55 +202,55 @@
       <div>
         <div class="home-body p-3 nav-text">
           <div class="text-center pt-3">
-            <h4>ค้นหาข้อมูลแหล่งท่องเที่ยว</h4>
+            <h4>ค้นหาข้อมูล{{ selectedChoice }}</h4>
           </div>
 
           <b-row class="justify-content-center text-center my-4">
-            <b-col md="3" cols="4">
+            <b-col md="4" cols="4">
               <div>
                 <i
                   class="fa fa-map-marker rounded-icon"
                   :style="
-                    selectedChoice != 0
+                    selectedChoice != 'แหล่งท่องเที่ยว'
                       ? { 'background-color': 'gray' }
                       : { 'background-color': choices[0].color }
                   "
-                  @click="selectedChoice = 0"
+                  @click="selectedChoice = 'แหล่งท่องเที่ยว'"
                 />
               </div>
-              <div>
+              <div class="text-center">
                 แหล่งท่องเที่ยว
               </div></b-col
             >
-            <b-col md="3" cols="4">
+            <b-col md="4" cols="4">
               <div>
                 <i
                   class="fas fa-hotel rounded-icon"
                   :style="
-                    selectedChoice != 1
+                    selectedChoice != 'ที่พัก'
                       ? { 'background-color': 'gray' }
                       : { 'background-color': choices[1].color }
                   "
-                  @click="selectedChoice = 1"
+                  @click="selectedChoice = 'ที่พัก'"
                 />
               </div>
-              <div>
+              <div class="text-center">
                 ที่พัก
               </div></b-col
             >
-            <b-col md="3" cols="4">
+            <b-col md="4" cols="4">
               <div>
                 <i
                   class="fas fa-utensils rounded-icon"
                   :style="
-                    selectedChoice != 2
+                    selectedChoice != 'ร้านอาหาร'
                       ? { 'background-color': 'gray' }
                       : { 'background-color': choices[2].color }
                   "
-                  @click="selectedChoice = 2"
+                  @click="selectedChoice = 'ร้านอาหาร'"
                 />
               </div>
-              <div>
+              <div class="text-center">
                 ร้านอาหาร
               </div></b-col
             >
@@ -274,7 +270,7 @@
                       >
                       </b-form-input>
                       <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 40px"
+                        <span class="input-group-text" style="width : 100%"
                           ><i class="fa fa-search"></i
                         ></span>
                       </b-input-group-prepend>
@@ -291,13 +287,16 @@
                       />
 
                       <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 40px"
+                        <span class="input-group-text" style="width : 100%"
                           ><i class="fa fa-map-marker"></i
                         ></span>
                       </b-input-group-prepend>
                     </b-input-group>
 
-                    <b-input-group class="my-4" v-if="selectedChoice == 0">
+                    <b-input-group
+                      class="my-4"
+                      v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
+                    >
                       <b-form-select
                         alternative
                         addon-left-icon="ni
@@ -308,7 +307,7 @@
                       />
 
                       <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 40px"
+                        <span class="input-group-text" style="width : 100%"
                           ><i class="far fa-object-group"></i
                         ></span>
                       </b-input-group-prepend>
@@ -424,7 +423,7 @@ export default {
         "วัฒนธรรม",
         "วิทยาศาสตร์",
       ],
-      selectedChoice: 0,
+      selectedChoice: "แหล่งท่องเที่ยว",
       choices: [{ color: "orange" }, { color: "green" }, { color: "pink" }],
       result: [],
       isSearch: false,
