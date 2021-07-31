@@ -182,9 +182,7 @@
                     </span>
                     <span v-else>-</span>
                   </b-card-text>
-                  <a
-                    :href="'/attractions/' + p.name.replace(' ', '-')"
-                    target="_blank"
+                  <a :href="'/attractions/' + p.name.replace(' ', '-')"
                     ><b-button variant="info" class="m-1"
                       >ดูรายละเอียด</b-button
                     ></a
@@ -369,10 +367,7 @@
                     </span>
                     <span v-else>-</span>
                   </b-card-text>
-                  <a
-                    :href="'/attractions/' + p.name.replace(' ', '-')"
-                    target="_blank"
-                  >
+                  <a :href="'/attractions/' + p.name.replace(' ', '-')">
                     <b-button variant="info" class="m-1"
                       >ดูรายละเอียด</b-button
                     ></a
