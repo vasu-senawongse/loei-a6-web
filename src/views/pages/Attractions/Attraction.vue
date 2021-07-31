@@ -71,7 +71,7 @@
             header="สิ่งดึงดูดใจ (Attraction)"
             header-tag="header"
           >
-            <b-card-text v-html="result.physical"> </b-card-text>
+            <b-card-text v-html="result.attraction"> </b-card-text>
           </b-card>
         </b-col>
         <b-col md="4" cols="12">
@@ -81,7 +81,7 @@
             header="การเดินทางเข้าถึง (Accessibility)"
             header-tag="header"
           >
-            <b-card-text v-html="result.physical"> </b-card-text>
+            <b-card-text v-html="result.accessibility"> </b-card-text>
             <b-card-text>
               <a
                 :href="
@@ -103,7 +103,7 @@
             header="การบริการที่พัก (Accommodation)"
             header-tag="header"
           >
-            <b-card-text v-html="result.physical"> </b-card-text>
+            <b-card-text v-html="result.accommodation"> </b-card-text>
           </b-card>
         </b-col>
         <b-col md="4" cols="12">
@@ -139,43 +139,33 @@
           >
             <b-row>
               <b-col>
-                <b-card-text>
-                  <i class="fas fa-check" style="color : green"></i> มกราคม
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-check" style="color : green"></i> กุมภาพันธ์
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-check" style="color : green"></i> มีนาคม
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-check" style="color : green"></i> เมษายน
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-check" style="color : green"></i> พฤษภาคม
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-check" style="color : green"></i> มิถุนายน
+                <b-card-text v-for="i in 6" v-bind:key="i">
+                  <i
+                    class="fas fa-times"
+                    style="color : red"
+                    v-if="travelMonth.length > 0 && !travelMonth[i - 1].value"
+                  ></i>
+                  <i
+                    class="fas fa-check"
+                    style="color : green"
+                    v-if="travelMonth.length > 0 && travelMonth[i - 1].value"
+                  ></i>
+                  {{ travelMonth.length > 0 && travelMonth[i - 1].month }}
                 </b-card-text>
               </b-col>
               <b-col>
-                <b-card-text>
-                  <i class="fas fa-times" style="color : red"></i> กรกฎาคม
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-times" style="color : red"></i> สิงหาคม
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-times" style="color : red"></i> กันยายน
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-times" style="color : red"></i> ตุลาคม
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-times" style="color : red"></i> พฤศจิกายน
-                </b-card-text>
-                <b-card-text>
-                  <i class="fas fa-times" style="color : red"></i> ธันวาคม
+                <b-card-text v-for="i in 6" v-bind:key="i">
+                  <i
+                    class="fas fa-times"
+                    style="color : red"
+                    v-if="travelMonth.length > 0 && !travelMonth[i + 5].value"
+                  ></i>
+                  <i
+                    class="fas fa-check"
+                    style="color : green"
+                    v-if="travelMonth.length > 0 && travelMonth[i + 5].value"
+                  ></i>
+                  {{ travelMonth.length > 0 && travelMonth[i + 5].month }}
                 </b-card-text>
               </b-col>
             </b-row>
@@ -197,12 +187,65 @@ export default {
       imgPath:
         process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
       images: [],
+      travelMonth: [],
+      months: [
+        {
+          value: 1,
+          text: "มกราคม",
+        },
+        {
+          value: 2,
+          text: "กุมภาพันธ์",
+        },
+        {
+          value: 3,
+          text: "มีนาคม",
+        },
+        {
+          value: 4,
+          text: "เมษายน",
+        },
+        {
+          value: 5,
+          text: "พฤษภาคม",
+        },
+        {
+          value: 6,
+          text: "มิถุนายน",
+        },
+        {
+          value: 7,
+          text: "กรกฎาคม",
+        },
+        {
+          value: 8,
+          text: "สิงหาคม",
+        },
+        {
+          value: 9,
+          text: "กันยายน",
+        },
+        {
+          value: 10,
+          text: "ตุลาคม",
+        },
+
+        {
+          value: 11,
+          text: "พฤศจิกายน",
+        },
+        {
+          value: 12,
+          text: "ธันวาคม",
+        },
+      ],
     };
   },
   methods: {
     async fetch() {
       let res = await api.get(this.apiRoute);
       this.result = res.data;
+      this.result.month = this.result.month.split(",");
       this.images = [
         this.imgPath + this.result.img,
         "https://mpics.mgronline.com/pics/Images/563000002225701.JPEG",
@@ -210,6 +253,11 @@ export default {
         "https://bottomlineis.co/uploads/images/image_750x_5d9de55a90e2a.jpg",
         "https://www.trekkingthai.com/wp-content/uploads/2014/12/img_0511-1000x667.jpg",
       ];
+      this.months.forEach((i) => {
+        if (this.result.month.includes(i.value.toString()))
+          this.travelMonth.push({ month: i.text, value: true });
+        else this.travelMonth.push({ month: i.text, value: false });
+      });
     },
   },
   async mounted() {
