@@ -359,7 +359,7 @@
                     {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
                   </b-card-text>
                   <b-card-text>
-                    {{ p.phone ? p.phoone : "-" }}
+                    โทร: {{ p.phone ? p.phone : "-" }}
                   </b-card-text>
                   <a
                     :href="'/attractions/' + p.name.replace(' ', '-')"

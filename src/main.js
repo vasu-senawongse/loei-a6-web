@@ -10,10 +10,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Lightbox from '@morioh/v-lightbox'
+import '@morioh/v-lightbox/dist/lightbox.css';
 import 'quill/dist/quill.core.css'; // import styles
 import 'quill/dist/quill.snow.css'; // for snow theme
 import 'quill/dist/quill.bubble.css'; // for bubble theme
+
 Vue.config.productionTip = false;
+Vue.use(Lightbox);
 Vue.use(VueQuillEditor);
 Vue.use(VueSweetalert2);
 Vue.use(BootstrapVue);
