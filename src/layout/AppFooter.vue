@@ -1,6 +1,6 @@
 <template>
   <div class="justify-content-center text-light footer">
-    <footer>
+    <footer class="nav-text">
       <small class="rights">
         <span class="copyright">
           &copy; 2021
@@ -13,7 +13,7 @@
 </template>
 <script>
 export default {
-  name: 'app-footer',
+  name: "app-footer",
   data() {
     return {};
   },

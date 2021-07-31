@@ -176,7 +176,11 @@
                     {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
                   </b-card-text>
                   <b-card-text>
-                    โทร: {{ p.phone ? p.phone : "-" }}
+                    โทร:
+                    <span v-if="p.phone">
+                      <a :href="'tel:' + p.phone">{{ p.phone }}</a>
+                    </span>
+                    <span v-else>-</span>
                   </b-card-text>
                   <a
                     :href="'/attractions/' + p.name.replace(' ', '-')"
@@ -359,7 +363,11 @@
                     {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
                   </b-card-text>
                   <b-card-text>
-                    โทร: {{ p.phone ? p.phone : "-" }}
+                    โทร:
+                    <span v-if="p.phone">
+                      <a :href="'tel:' + p.phone">{{ p.phone }}</a>
+                    </span>
+                    <span v-else>-</span>
                   </b-card-text>
                   <a
                     :href="'/attractions/' + p.name.replace(' ', '-')"

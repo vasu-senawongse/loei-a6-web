@@ -81,11 +81,10 @@ export default {
       this.result = res.data;
       this.images = [
         this.imgPath + this.result.img,
-        this.imgPath + this.result.img,
-        this.imgPath + this.result.img,
-        this.imgPath + this.result.img,
-        this.imgPath + this.result.img,
-        this.imgPath + this.result.img,
+        "https://mpics.mgronline.com/pics/Images/563000002225701.JPEG",
+        "https://mpics.mgronline.com/pics/Images/563000009609401.JPEG",
+        "https://bottomlineis.co/uploads/images/image_750x_5d9de55a90e2a.jpg",
+        "https://www.trekkingthai.com/wp-content/uploads/2014/12/img_0511-1000x667.jpg",
       ];
     },
   },
