@@ -160,7 +160,7 @@
                 v-bind:key="index"
               >
                 <b-card
-                  :img-src="p.img"
+                  :img-src="imgPath + p.img"
                   img-alt="Card image"
                   img-left
                   img-height="200"
@@ -176,9 +176,15 @@
                     {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
                   </b-card-text>
                   <b-card-text>
-                    โทร: 081-234-5678
+                    โทร: {{ p.phone ? p.phone : "-" }}
                   </b-card-text>
-                  <b-button variant="info" class="m-1">ดูรายละเอียด</b-button>
+                  <a
+                    :href="'/attractions/' + p.name.replace(' ', '-')"
+                    target="_blank"
+                    ><b-button variant="info" class="m-1"
+                      >ดูรายละเอียด</b-button
+                    ></a
+                  >
                   <a
                     :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
                     target="_blank"
@@ -337,7 +343,7 @@
                 v-bind:key="index"
               >
                 <b-card
-                  :img-src="p.img"
+                  :img-src="imgPath + p.img"
                   img-alt="Card image"
                   img-top
                   img-height="200"
@@ -353,9 +359,16 @@
                     {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
                   </b-card-text>
                   <b-card-text>
-                    โทร: 081-234-5678
+                    {{ p.phone ? p.phoone : "-" }}
                   </b-card-text>
-                  <b-button variant="info" class="m-1">ดูรายละเอียด</b-button>
+                  <a
+                    :href="'/attractions/' + p.name.replace(' ', '-')"
+                    target="_blank"
+                  >
+                    <b-button variant="info" class="m-1"
+                      >ดูรายละเอียด</b-button
+                    ></a
+                  >
                   <a
                     :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
                     target="_blank"
@@ -374,44 +387,46 @@
   </div>
 </template>
 <script>
-import api from '@/services/api.js';
+import api from "@/services/api.js";
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
-      location: '',
-      district: '',
-      category: '',
+      location: "",
+      district: "",
+      category: "",
       isBusy: false,
       options: [
-        { text: 'ทุกอำเภอ', value: '' },
-        'เชียงคาน',
-        'เมืองเลย',
-        'เอราวัณ',
-        'ด่านซ้าย',
-        'ท่าลี่',
-        'นาแห้ว',
-        'นาด้วง',
-        'ปากชม',
-        'ผาขาว',
-        'ภูเรือ',
-        'ภูกระดึง',
-        'ภูหลวง',
-        'วังสะพุง',
-        'หนองหิน',
+        { text: "ทุกอำเภอ", value: "" },
+        "เชียงคาน",
+        "เมืองเลย",
+        "เอราวัณ",
+        "ด่านซ้าย",
+        "ท่าลี่",
+        "นาแห้ว",
+        "นาด้วง",
+        "ปากชม",
+        "ผาขาว",
+        "ภูเรือ",
+        "ภูกระดึง",
+        "ภูหลวง",
+        "วังสะพุง",
+        "หนองหิน",
       ],
       types: [
-        { text: 'ทุกประเภท', value: '' },
+        { text: "ทุกประเภท", value: "" },
 
-        'ธรรมชาติ',
-        'ประวัติศาสตร์',
-        'วัฒนธรรม',
-        'วิทยาศาสตร์',
+        "ธรรมชาติ",
+        "ประวัติศาสตร์",
+        "วัฒนธรรม",
+        "วิทยาศาสตร์",
       ],
       selectedChoice: 0,
-      choices: [{ color: 'orange' }, { color: 'green' }, { color: 'pink' }],
+      choices: [{ color: "orange" }, { color: "green" }, { color: "pink" }],
       result: [],
       isSearch: false,
+      imgPath:
+        process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
     };
   },
   methods: {

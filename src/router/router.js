@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import AppHeader from '../layout/AppHeader';
 import AppFooter from '../layout/AppFooter';
 import Home from '../views/pages/Home/Home.vue';
+import Attraction from '../views/pages/Attractions/Attraction.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -16,6 +17,16 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Home,
+        footer: AppFooter,
+      },
+    },
+
+    {
+      path: '/attractions/:name',
+      name: 'attraction',
+      components: {
+        header: AppHeader,
+        default: Attraction,
         footer: AppFooter,
       },
     },
