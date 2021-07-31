@@ -1,7 +1,19 @@
 <template>
   <div>
     <b-container class="my-5">
-      <lightbox css="h-500" :cells="5" :items="images"></lightbox>
+      <lightbox
+        css="h-500"
+        :cells="3"
+        :items="images"
+        class="hide-mobile"
+      ></lightbox>
+
+      <lightbox
+        css="h-200"
+        :cells="3"
+        :items="images"
+        class="hide-desktop"
+      ></lightbox>
 
       <b-card class="mb-3">
         <b-card-text>
@@ -27,10 +39,12 @@
             <i class="fas fa-building" v-if="result.org"></i>
             {{ result.org ? result.org : "-" }}
           </span>
-          <span>
-            <i class="fas fa-phone-volume" v-if="result.phone"></i>
-            {{ result.phone ? result.phone : "-" }}
+
+          <span v-if="result.phone">
+            <i class="fas fa-phone-volume mr-1"></i>
+            <a :href="'tel:' + result.phone">{{ result.phone }}</a>
           </span>
+          <span v-else>-</span>
         </b-card-text>
       </b-card>
       <h4>ข้อมูลทางกายภาพ</h4>

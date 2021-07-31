@@ -1,7 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+
 html,
 body {
   min-width: 100%;
-  /* overflow-x: hidden; */
+  font-family: "Prompt", sans-serif;
+}
+.nav-text {
+  font-family: "Prompt", sans-serif;
+}
+.container {
+  font-family: "Prompt", sans-serif;
 }
 
 .fit-image {

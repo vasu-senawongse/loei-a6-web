@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" variant="faded" type="dark"
-      ><h2 class="text-center w-100 hide-mobile" style="color : white">
+      ><h2 class="text-center w-100 hide-mobile nav-text" style="color : white">
         ระบบฐานข้อมูลการท่องเที่ยวอย่างยั่งยืนในพื้นที่พิเศษเลย
       </h2></b-navbar
     >
