@@ -2,7 +2,10 @@
 
 html,
 body {
+  scroll-behavior: smooth;
   min-width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
   font-family: "Prompt", sans-serif;
 }
 .nav-text {

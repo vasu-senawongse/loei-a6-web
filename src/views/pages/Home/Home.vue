@@ -136,7 +136,7 @@
           </b-row>
         </div>
 
-        <b-container class="my-5">
+        <b-container class="my-5" ref="dataResult1">
           <div class="text-center text-danger" v-if="isBusy == true">
             <b-spinner class="align-middle m-2"></b-spinner>
             <strong>กำลังค้นหา...</strong>
@@ -315,7 +315,7 @@
           </div>
         </div>
 
-        <b-container class="my-5">
+        <b-container class="my-5" ref="dataResult2">
           <div class="text-center text-danger" v-if="isBusy == true">
             <b-spinner class="align-middle m-2"></b-spinner>
             <strong>กำลังค้นหา...</strong>
@@ -431,9 +431,16 @@ export default {
       let res = await api.get(
         `attractions/get-attractions-by-filter?district=${this.district}&category=${this.category}&name=${this.location}`
       );
-
       this.result = res.data;
       this.isBusy = false;
+
+      var element = this.$refs.dataResult1;
+      var element2 = this.$refs.dataResult2;
+      var top = element.offsetTop > 0 ? element.offsetTop : element2.offsetTop;
+
+      setTimeout(function() {
+        window.scrollTo(0, top);
+      }, 500);
     },
   },
 };
