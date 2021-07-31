@@ -3,7 +3,7 @@
     <div class="hide-mobile">
       <div>
         <div class="home-body">
-          <b-row class="home-search justify-content-center">
+          <b-row class="home-search justify-content-center nav-text">
             <b-col md="4" cols="12" class="form-background">
               <b-row class="justify-content-center">
                 <b-col md="9" cols="12" class="pt-3">
@@ -206,7 +206,7 @@
     </div>
     <div class="hide-desktop">
       <div>
-        <div class="home-body p-3">
+        <div class="home-body p-3 nav-text">
           <div class="text-center pt-3">
             <h4>ค้นหาข้อมูลแหล่งท่องเที่ยว</h4>
           </div>
@@ -364,7 +364,7 @@
                   </b-card-text>
                   <b-card-text>
                     โทร:
-                    <span v-if="p.phone">
+                    <span v-if="result.phone">
                       <a :href="'tel:' + p.phone">{{ p.phone }}</a>
                     </span>
                     <span v-else>-</span>
