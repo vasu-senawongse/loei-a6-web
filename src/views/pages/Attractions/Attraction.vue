@@ -17,7 +17,14 @@
 
       <b-card class="mb-3" bg-variant="light">
         <b-card-text>
-          <b-badge variant="success"> {{ result.category }}</b-badge>
+          <b-badge
+            class="mr-2"
+            :style="getCategoryColor(c)"
+            v-for="(c, index) in result && result.category"
+            v-bind:key="'c-' + index"
+          >
+            {{ c }}</b-badge
+          >
         </b-card-text>
         <b-card-text
           ><h3>{{ result.name }}</h3></b-card-text
@@ -243,10 +250,28 @@ export default {
     };
   },
   methods: {
+    getCategoryColor(c) {
+      var types = [
+        { text: "เชิงนิเวศ", color: "#028A0F" },
+        { text: "ทางธรรมชาติ", color: "#03C04A" },
+        { text: "ทางประวัติศาสตร์", color: "#795644" },
+        { text: "ทางวัฒนธรรม", color: "#FACA0F" },
+        { text: "โดยชุมชน", color: "#FC46AA" },
+        { text: "เชิงเกษตร", color: "#466D1D" },
+        { text: "เพื่อนันทนาการ", color: "#7C5295" },
+        { text: "เชิงสุขภาพ", color: "016064" },
+        { text: "ทางศิลปวิทยาการ", color: "#FF6600" },
+        { text: "จุดหมายตา", color: "#63C5DA" },
+      ];
+
+      var result = types.filter((i) => i.text == c)[0];
+      return { "background-color": result.color };
+    },
     async fetch() {
       let res = await api.get(this.apiRoute);
       this.result = res.data;
       this.result.month = this.result.month.split(",");
+      this.result.category = this.result.category.split(",");
       let res2 = await api.get(this.imgRoute + this.result.id);
       var gallery = res2.data;
       gallery.forEach((i) => {
