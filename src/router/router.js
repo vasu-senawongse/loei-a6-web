@@ -4,7 +4,7 @@ import AppHeader from '../layout/AppHeader';
 import AppFooter from '../layout/AppFooter';
 import Home from '../views/pages/Home/Home.vue';
 import Attraction from '../views/pages/Attractions/Attraction.vue';
-import NotFoundPage from '../views/NotFoundPage.vue'; 
+import NotFoundPage from '../views/pages/rError'; 
 Vue.use(Router);
 
 export default new Router({
@@ -20,9 +20,7 @@ export default new Router({
         default: Home,
         footer: AppFooter,
       },
-      
     },
-
     {
       path: '/error/not-found',
       name: 'error.not.found',
@@ -32,7 +30,6 @@ export default new Router({
         footer: AppFooter,
       },
     },
-
     {
       path: '/attractions/:name',
       name: 'attraction',
