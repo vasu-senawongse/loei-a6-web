@@ -8,6 +8,13 @@ body {
   overflow-y: scroll;
   font-family: "Prompt", sans-serif;
 }
+.card {
+  height: 100%;
+}
+
+.card-header {
+  font-weight: bold;
+}
 .nav-text {
   font-family: "Prompt", sans-serif;
 }
