@@ -184,6 +184,7 @@ export default {
     return {
       result: {},
       apiRoute: `attractions/get-attraction-by-name/${this.$route.params.name}`,
+      imgRoute: `attractions/get-attraction-gallery-by-id/`,
       imgPath:
         process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
       images: [],
@@ -246,13 +247,11 @@ export default {
       let res = await api.get(this.apiRoute);
       this.result = res.data;
       this.result.month = this.result.month.split(",");
-      this.images = [
-        this.imgPath + this.result.img,
-        "https://mpics.mgronline.com/pics/Images/563000002225701.JPEG",
-        "https://mpics.mgronline.com/pics/Images/563000009609401.JPEG",
-        "https://bottomlineis.co/uploads/images/image_750x_5d9de55a90e2a.jpg",
-        "https://www.trekkingthai.com/wp-content/uploads/2014/12/img_0511-1000x667.jpg",
-      ];
+      let res2 = await api.get(this.imgRoute + this.result.id);
+      var gallery = res2.data;
+      gallery.forEach((i) => {
+        this.images.push(this.imgPath + i.img);
+      });
       this.months.forEach((i) => {
         if (this.result.month.includes(i.value.toString()))
           this.travelMonth.push({ month: i.text, value: true });
