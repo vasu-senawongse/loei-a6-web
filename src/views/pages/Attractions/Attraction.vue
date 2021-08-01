@@ -71,9 +71,8 @@
       <div v-html="result.nature"></div>
 
       <b-row>
-        <b-col md="4" cols="12">
+        <b-col md="4" cols="12" class="mb-3">
           <b-card
-            class="mb-3"
             bg-variant="light"
             header="สิ่งดึงดูดใจ (Attraction)"
             header-tag="header"
@@ -81,9 +80,8 @@
             <b-card-text v-html="result.attraction"> </b-card-text>
           </b-card>
         </b-col>
-        <b-col md="4" cols="12">
+        <b-col md="4" cols="12" class="mb-3">
           <b-card
-            class="mb-3"
             bg-variant="light"
             header="การเดินทางเข้าถึง (Accessibility)"
             header-tag="header"
@@ -103,9 +101,8 @@
             </b-card-text>
           </b-card>
         </b-col>
-        <b-col md="4" cols="12">
+        <b-col md="4" cols="12" class="mb-3">
           <b-card
-            class="mb-3"
             bg-variant="light"
             header="การบริการที่พัก (Accommodation)"
             header-tag="header"
@@ -113,33 +110,34 @@
             <b-card-text v-html="result.accommodation"> </b-card-text>
           </b-card>
         </b-col>
-        <b-col md="4" cols="12">
+        <b-col md="4" cols="12" class="mb-3">
           <b-card
-            class="mb-3"
             bg-variant="light"
             header="กิจกรรมการท่องเที่ยว (Activities)"
             header-tag="header"
           >
             <b-card-text>
-              <b-badge variant="success"> {{ result.category }}</b-badge>
+              <div v-for="a in result.activities" v-bind:key="'act-' + a">
+                {{ a }}
+              </div>
             </b-card-text>
           </b-card>
         </b-col>
-        <b-col md="4" cols="12">
+        <b-col md="4" cols="12" class="mb-3">
           <b-card
-            class="mb-3"
             bg-variant="light"
             header="สิ่งอำนวยความสะดวก (Amenities)"
             header-tag="header"
           >
             <b-card-text>
-              <b-badge variant="success"> {{ result.category }}</b-badge>
+              <div v-for="a in result.amenities" v-bind:key="'amen-' + a">
+                {{ a }}
+              </div>
             </b-card-text>
           </b-card>
         </b-col>
-        <b-col md="4" cols="12">
+        <b-col md="4" cols="12" class="mb-3">
           <b-card
-            class="mb-3"
             bg-variant="light"
             header="เดือนสำหรับการท่องเที่ยว"
             header-tag="header"
@@ -272,6 +270,8 @@ export default {
       this.result = res.data;
       this.result.month = this.result.month.split(",");
       this.result.category = this.result.category.split(",");
+      this.result.activities = this.result.activities.split(",");
+      this.result.amenities = this.result.amenities.split(",");
       let res2 = await api.get(this.imgRoute + this.result.id);
       var gallery = res2.data;
       gallery.forEach((i) => {
