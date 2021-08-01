@@ -4,7 +4,7 @@ import AppHeader from '../layout/AppHeader';
 import AppFooter from '../layout/AppFooter';
 import Home from '../views/pages/Home/Home.vue';
 import Attraction from '../views/pages/Attractions/Attraction.vue';
-import NotFoundPage from '../views/pages/rError'; 
+import NotFoundPage from '../views/pages/Error/NotFoundPage.vue'; 
 Vue.use(Router);
 
 export default new Router({
