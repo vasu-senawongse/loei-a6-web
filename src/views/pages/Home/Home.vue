@@ -427,6 +427,14 @@ export default {
         process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
     };
   },
+  watch: {
+    selectedChoice() {
+      this.isSearch = false;
+      this.result = [];
+      this.location = "";
+      this.category = "";
+    },
+  },
   methods: {
     async search() {
       this.isBusy = true;
