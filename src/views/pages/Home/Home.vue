@@ -410,15 +410,14 @@
               ></span
             ></template
           >
-
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="result.length"
-            :per-page="perPage"
-            aria-controls="hotel-list"
-            style="float:right"
-          ></b-pagination>
         </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="result.length"
+          :per-page="perPage"
+          aria-controls="hotel-list"
+          style="float:right"
+        ></b-pagination>
       </div>
       <div
         v-if="
@@ -472,127 +471,126 @@
               ></span
             ></template
           >
-
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="result.length"
-            :per-page="perPage"
-            aria-controls="restaurant-list"
-            style="float:right"
-          ></b-pagination>
         </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="result.length"
+          :per-page="perPage"
+          aria-controls="restaurant-list"
+          style="float:right"
+        ></b-pagination>
       </div>
     </b-container>
   </div>
 </template>
 <script>
-import api from "@/services/api.js";
+import api from '@/services/api.js';
 export default {
-  name: "home",
+  name: 'home',
   data() {
     return {
       perPage: 10,
       currentPage: 1,
-      location: "",
-      district: "",
-      category: "",
+      location: '',
+      district: '',
+      category: '',
       isBusy: false,
       hotelfields: [
         {
-          key: "name",
-          label: "ชื่อที่พัก",
-          class: "text-left align-middle w-180",
+          key: 'name',
+          label: 'ชื่อที่พัก',
+          class: 'text-left align-middle w-180',
           stickyColumn: true,
         },
         {
-          key: "room",
-          label: "จำนวนห้องพัก",
-          class: "text-left align-middle w-180",
+          key: 'room',
+          label: 'จำนวนห้องพัก',
+          class: 'text-left align-middle w-180',
         },
         {
-          key: "location",
-          label: "ที่อยู่",
-          class: "text-left align-middle w-180",
+          key: 'location',
+          label: 'ที่อยู่',
+          class: 'text-left align-middle w-180',
         },
         {
-          key: "phone",
-          label: "เบอร์ติดต่อ",
-          class: "text-left align-middle w-180",
+          key: 'phone',
+          label: 'เบอร์ติดต่อ',
+          class: 'text-left align-middle w-180',
         },
         {
-          key: "btn",
-          label: "",
-          class: "text-left align-middle w-180",
+          key: 'btn',
+          label: '',
+          class: 'text-left align-middle w-180',
         },
       ],
 
       resfields: [
         {
-          key: "name",
-          label: "ชื่อร้านอาหาร",
-          class: "text-left align-middle w-180",
+          key: 'name',
+          label: 'ชื่อร้านอาหาร',
+          class: 'text-left align-middle w-180',
           stickyColumn: true,
         },
         {
-          key: "location",
-          label: "ที่อยู่",
-          class: "text-left align-middle w-180",
+          key: 'location',
+          label: 'ที่อยู่',
+          class: 'text-left align-middle w-180',
         },
         {
-          key: "phone",
-          label: "เบอร์ติดต่อ",
-          class: "text-left align-middle w-180",
+          key: 'phone',
+          label: 'เบอร์ติดต่อ',
+          class: 'text-left align-middle w-180',
         },
         {
-          key: "btn",
-          label: "",
-          class: "text-left align-middle w-180",
+          key: 'btn',
+          label: '',
+          class: 'text-left align-middle w-180',
         },
       ],
       options: [
-        { text: "ทุกอำเภอ", value: "" },
-        "เชียงคาน",
-        "เมืองเลย",
-        "เอราวัณ",
-        "ด่านซ้าย",
-        "ท่าลี่",
-        "นาแห้ว",
-        "นาด้วง",
-        "ปากชม",
-        "ผาขาว",
-        "ภูเรือ",
-        "ภูกระดึง",
-        "ภูหลวง",
-        "วังสะพุง",
-        "หนองหิน",
+        { text: 'ทุกอำเภอ', value: '' },
+        'เชียงคาน',
+        'เมืองเลย',
+        'เอราวัณ',
+        'ด่านซ้าย',
+        'ท่าลี่',
+        'นาแห้ว',
+        'นาด้วง',
+        'ปากชม',
+        'ผาขาว',
+        'ภูเรือ',
+        'ภูกระดึง',
+        'ภูหลวง',
+        'วังสะพุง',
+        'หนองหิน',
       ],
       types: [
-        { text: "ทุกประเภท", value: "" },
-        "เชิงนิเวศ",
-        "ทางธรรมชาติ",
-        "ทางประวัติศาสตร์",
-        "ทางวัฒนธรรม",
-        "โดยชุมชน",
-        "เชิงเกษตร",
-        "เพื่อนันทนาการ",
-        "เชิงสุขภาพ",
-        "ทางศิลปวิทยาการ",
-        "จุดหมายตา",
+        { text: 'ทุกประเภท', value: '' },
+        'เชิงนิเวศ',
+        'ทางธรรมชาติ',
+        'ทางประวัติศาสตร์',
+        'ทางวัฒนธรรม',
+        'โดยชุมชน',
+        'เชิงเกษตร',
+        'เพื่อนันทนาการ',
+        'เชิงสุขภาพ',
+        'ทางศิลปวิทยาการ',
+        'จุดหมายตา',
       ],
-      selectedChoice: "แหล่งท่องเที่ยว",
-      choices: [{ color: "orange" }, { color: "green" }, { color: "pink" }],
+      selectedChoice: 'แหล่งท่องเที่ยว',
+      choices: [{ color: 'orange' }, { color: 'green' }, { color: 'pink' }],
       result: [],
       isSearch: false,
       imgPath:
-        process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
+        process.env.VUE_APP_IMAGE_STORAGE_URL || 'http://localhost:5000/images',
     };
   },
   watch: {
     selectedChoice() {
       this.isSearch = false;
       this.result = [];
-      this.location = "";
-      this.category = "";
+      this.location = '';
+      this.category = '';
       this.currentPage = 1;
     },
   },
@@ -603,11 +601,11 @@ export default {
         this.isSearch = true;
       }
       var route = null;
-      if (this.selectedChoice == "แหล่งท่องเที่ยว")
+      if (this.selectedChoice == 'แหล่งท่องเที่ยว')
         route = `attractions/get-attractions-by-filter?district=${this.district}&category=${this.category}&name=${this.location}`;
-      if (this.selectedChoice == "ที่พัก")
+      if (this.selectedChoice == 'ที่พัก')
         route = `hotels/get-hotels-by-filter?district=${this.district}&name=${this.location}`;
-      if (this.selectedChoice == "ร้านอาหาร")
+      if (this.selectedChoice == 'ร้านอาหาร')
         route = `restaurants/get-restaurants-by-filter?district=${this.district}&name=${this.location}`;
       let res = await api.get(route);
       this.result = res.data;
