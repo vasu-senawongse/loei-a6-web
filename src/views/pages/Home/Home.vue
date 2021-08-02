@@ -1,212 +1,14 @@
 <template>
   <div class="mb-5">
-    <div class="hide-mobile">
-      <div>
-        <div class="home-body">
-          <b-row class="home-search justify-content-center nav-text ">
-            <b-col md="4" cols="12" class="form-background">
-              <b-row
-                class="justify-content-center text-center"
-                align-v="center"
-                style="height:100%"
-              >
-                <b-col md="4" sm="6" cols="12">
-                  <div>
-                    <i
-                      class="fa fa-map-marker rounded-icon"
-                      :style="
-                        selectedChoice != 'แหล่งท่องเที่ยว'
-                          ? { 'background-color': 'gray' }
-                          : { 'background-color': choices[0].color }
-                      "
-                      @click="selectedChoice = 'แหล่งท่องเที่ยว'"
-                    />
-                  </div>
-                  <div class="text-center">
-                    แหล่งท่องเที่ยว
-                  </div></b-col
-                >
-                <b-col md="4" sm="6" cols="12">
-                  <div>
-                    <i
-                      class="fas fa-hotel rounded-icon"
-                      :style="
-                        selectedChoice != 'ที่พัก'
-                          ? { 'background-color': 'gray' }
-                          : { 'background-color': choices[1].color }
-                      "
-                      @click="selectedChoice = 'ที่พัก'"
-                    />
-                  </div>
-                  <div class="text-center">
-                    ที่พัก
-                  </div></b-col
-                >
-                <b-col md="4" cols="12">
-                  <div>
-                    <i
-                      class="fas fa-utensils rounded-icon"
-                      :style="
-                        selectedChoice != 'ร้านอาหาร'
-                          ? { 'background-color': 'gray' }
-                          : { 'background-color': choices[2].color }
-                      "
-                      @click="selectedChoice = 'ร้านอาหาร'"
-                    />
-                  </div>
-                  <div class="text-center">
-                    ร้านอาหาร
-                  </div></b-col
-                >
-              </b-row>
-            </b-col>
-            <b-col md="4" cols="12" class="form-background">
-              <b-row class="justify-content-center">
-                <b-col md="9" cols="12" class="pt-3">
-                  <div>
-                    <div class="text-center pt-3">
-                      <h4>ค้นหาข้อมูล{{ selectedChoice }}</h4>
-                    </div>
-
-                    <b-input-group class="my-4">
-                      <b-form-input
-                        alternative
-                        type="text"
-                        placeholder="ค้นหาจากชื่อ"
-                        v-model="location"
-                        style="height : 40px"
-                      >
-                      </b-form-input>
-                      <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 100%"
-                          ><i class="fa fa-search"></i
-                        ></span>
-                      </b-input-group-prepend>
-                    </b-input-group>
-
-                    <b-input-group class="my-4">
-                      <b-form-select
-                        alternative
-                        addon-left-icon="ni
-            ni-lock-circle-open"
-                        v-model="district"
-                        style="height : 40px"
-                        :options="options"
-                      />
-
-                      <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 100%"
-                          ><i class="fa fa-map-marker"></i
-                        ></span>
-                      </b-input-group-prepend>
-                    </b-input-group>
-
-                    <b-input-group
-                      class="my-4"
-                      v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
-                    >
-                      <b-form-select
-                        alternative
-                        addon-left-icon="ni
-            ni-lock-circle-open"
-                        v-model="category"
-                        style="height : 40px"
-                        :options="types"
-                      />
-
-                      <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 100%"
-                          ><i class="far fa-object-group"></i
-                        ></span>
-                      </b-input-group-prepend>
-                    </b-input-group>
-
-                    <div class="text-center">
-                      <b-button
-                        class="my-4 w-100"
-                        variant="info"
-                        @click="search()"
-                        >ค้นหา</b-button
-                      >
-                    </div>
-                  </div>
-                </b-col>
-              </b-row></b-col
-            >
-          </b-row>
-        </div>
-
-        <b-container class="my-5" ref="dataResult1">
-          <div class="text-center text-danger" v-if="isBusy == true">
-            <b-spinner class="align-middle m-2"></b-spinner>
-            <strong>กำลังค้นหา...</strong>
-          </div>
-          <div
-            v-else-if="result.length == 0 && isSearch == true"
-            class="text-center"
+    <div class="home-body hide-mobile">
+      <b-row class="home-search justify-content-center nav-text ">
+        <b-col md="4" cols="12" class="form-background">
+          <b-row
+            class="justify-content-center text-center"
+            align-v="center"
+            style="height:100%"
           >
-            <h1>- ไม่มีข้อมูลใดที่ตรงกับตัวกรองของคุณ -</h1>
-          </div>
-          <div v-if="isBusy == false">
-            <b-row>
-              <b-col
-                md="12"
-                cols="12"
-                v-for="(p, index) in result"
-                v-bind:key="index"
-              >
-                <b-card
-                  :img-src="imgPath + p.img"
-                  img-alt="Card image"
-                  img-left
-                  img-height="200"
-                  img-width="300"
-                  class="mb-3"
-                >
-                  <b-card-text
-                    ><h2>{{ p.name }}</h2></b-card-text
-                  >
-
-                  <b-card-text>
-                    ที่ตั้ง:
-                    {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
-                  </b-card-text>
-                  <b-card-text>
-                    โทร:
-                    <span v-if="p.phone">
-                      <a :href="'tel:' + p.phone">{{ p.phone }}</a>
-                    </span>
-                    <span v-else>-</span>
-                  </b-card-text>
-                  <a :href="'/attractions/' + p.name.replace(' ', '-')"
-                    ><b-button variant="info" class="m-1"
-                      >ดูรายละเอียด</b-button
-                    ></a
-                  >
-                  <a
-                    :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
-                    target="_blank"
-                  >
-                    <b-button variant="outline-info" class="m-1"
-                      ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
-                    ></a
-                  >
-                </b-card>
-              </b-col>
-            </b-row>
-          </div>
-        </b-container>
-      </div>
-    </div>
-    <div class="hide-desktop">
-      <div>
-        <div class="home-body p-3 nav-text">
-          <div class="text-center pt-3">
-            <h4>ค้นหาข้อมูล{{ selectedChoice }}</h4>
-          </div>
-
-          <b-row class="justify-content-center text-center my-4">
-            <b-col md="4" cols="4">
+            <b-col md="4" sm="6" cols="12">
               <div>
                 <i
                   class="fa fa-map-marker rounded-icon"
@@ -218,8 +20,11 @@
                   @click="selectedChoice = 'แหล่งท่องเที่ยว'"
                 />
               </div>
-            </b-col>
-            <b-col md="4" cols="4">
+              <div class="text-center">
+                แหล่งท่องเที่ยว
+              </div></b-col
+            >
+            <b-col md="4" sm="6" cols="12">
               <div>
                 <i
                   class="fas fa-hotel rounded-icon"
@@ -231,8 +36,11 @@
                   @click="selectedChoice = 'ที่พัก'"
                 />
               </div>
-            </b-col>
-            <b-col md="4" cols="4">
+              <div class="text-center">
+                ที่พัก
+              </div></b-col
+            >
+            <b-col md="4" cols="12">
               <div>
                 <i
                   class="fas fa-utensils rounded-icon"
@@ -244,139 +52,437 @@
                   @click="selectedChoice = 'ร้านอาหาร'"
                 />
               </div>
-            </b-col>
-          </b-row>
-          <b-row class="justify-content-center">
-            <b-col md="4" cols="12">
-              <b-row class="justify-content-center">
-                <b-col md="9" cols="12" class="pt-3">
-                  <div>
-                    <b-input-group class="my-4">
-                      <b-form-input
-                        alternative
-                        type="text"
-                        placeholder="ค้นหาจากชื่อ"
-                        v-model="location"
-                        style="height : 40px"
-                      >
-                      </b-form-input>
-                      <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 100%"
-                          ><i class="fa fa-search"></i
-                        ></span>
-                      </b-input-group-prepend>
-                    </b-input-group>
-
-                    <b-input-group class="my-4">
-                      <b-form-select
-                        alternative
-                        addon-left-icon="ni
-            ni-lock-circle-open"
-                        v-model="district"
-                        style="height : 40px"
-                        :options="options"
-                      />
-
-                      <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 100%"
-                          ><i class="fa fa-map-marker"></i
-                        ></span>
-                      </b-input-group-prepend>
-                    </b-input-group>
-
-                    <b-input-group
-                      class="my-4"
-                      v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
-                    >
-                      <b-form-select
-                        alternative
-                        addon-left-icon="ni
-            ni-lock-circle-open"
-                        v-model="category"
-                        style="height : 40px"
-                        :options="types"
-                      />
-
-                      <b-input-group-prepend style="height : 40px;">
-                        <span class="input-group-text" style="width : 100%"
-                          ><i class="far fa-object-group"></i
-                        ></span>
-                      </b-input-group-prepend>
-                    </b-input-group>
-                  </div>
-                </b-col> </b-row
-            ></b-col>
-          </b-row>
-
-          <div class="text-center">
-            <b-button class="my-4 w-100" variant="info" @click="search()"
-              >ค้นหา</b-button
+              <div class="text-center">
+                ร้านอาหาร
+              </div></b-col
             >
-          </div>
-        </div>
+          </b-row>
+        </b-col>
+        <b-col md="4" cols="12" class="form-background">
+          <b-row class="justify-content-center">
+            <b-col md="9" cols="12" class="pt-3">
+              <div>
+                <div class="text-center pt-3">
+                  <h4>ค้นหาข้อมูล{{ selectedChoice }}</h4>
+                </div>
 
-        <b-container class="my-5" ref="dataResult2">
-          <div class="text-center text-danger" v-if="isBusy == true">
-            <b-spinner class="align-middle m-2"></b-spinner>
-            <strong>กำลังค้นหา...</strong>
-          </div>
-          <div
-            v-else-if="result.length == 0 && isSearch == true"
-            class="text-center"
-          >
-            <h5>- ไม่มีข้อมูลใดที่ตรงกับตัวกรองของคุณ -</h5>
-          </div>
-          <div v-if="isBusy == false">
-            <b-row>
-              <b-col
-                md="12"
-                cols="12"
-                v-for="(p, index) in result"
-                v-bind:key="index"
-              >
-                <b-card
-                  :img-src="imgPath + p.img"
-                  img-alt="Card image"
-                  img-top
-                  img-height="200"
-                  img-width="250"
-                  class="mb-3"
+                <b-input-group class="my-4">
+                  <b-form-input
+                    alternative
+                    type="text"
+                    placeholder="ค้นหาจากชื่อ"
+                    v-model="location"
+                    style="height : 40px"
+                  >
+                  </b-form-input>
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 100%"
+                      ><i class="fa fa-search"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <b-input-group class="my-4">
+                  <b-form-select
+                    alternative
+                    addon-left-icon="ni
+            ni-lock-circle-open"
+                    v-model="district"
+                    style="height : 40px"
+                    :options="options"
+                  />
+
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 100%"
+                      ><i class="fa fa-map-marker"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <b-input-group
+                  class="my-4"
+                  v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
                 >
-                  <b-card-text
-                    ><h3>{{ p.name }}</h3></b-card-text
-                  >
+                  <b-form-select
+                    alternative
+                    addon-left-icon="ni
+            ni-lock-circle-open"
+                    v-model="category"
+                    style="height : 40px"
+                    :options="types"
+                  />
 
-                  <b-card-text
-                    >ที่ตั้ง:
-                    {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
-                  </b-card-text>
-                  <b-card-text>
-                    โทร:
-                    <span v-if="result.phone">
-                      <a :href="'tel:' + p.phone">{{ p.phone }}</a>
-                    </span>
-                    <span v-else>-</span>
-                  </b-card-text>
-                  <a :href="'/attractions/' + p.name.replace(' ', '-')">
-                    <b-button variant="info" class="m-1"
-                      >ดูรายละเอียด</b-button
-                    ></a
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 100%"
+                      ><i class="far fa-object-group"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <div class="text-center">
+                  <b-button class="my-4 w-100" variant="info" @click="search()"
+                    >ค้นหา</b-button
                   >
-                  <a
-                    :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
-                    target="_blank"
-                  >
-                    <b-button variant="outline-info" class="m-1"
-                      ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
-                    ></a
-                  >
-                </b-card>
-              </b-col>
-            </b-row>
+                </div>
+              </div>
+            </b-col>
+          </b-row></b-col
+        >
+      </b-row>
+    </div>
+    <div class="home-body p-3 nav-text hide-desktop">
+      <div class="text-center pt-3">
+        <h4>ค้นหาข้อมูล{{ selectedChoice }}</h4>
+      </div>
+
+      <b-row class="justify-content-center text-center my-4">
+        <b-col md="4" cols="4">
+          <div>
+            <i
+              class="fa fa-map-marker rounded-icon"
+              :style="
+                selectedChoice != 'แหล่งท่องเที่ยว'
+                  ? { 'background-color': 'gray' }
+                  : { 'background-color': choices[0].color }
+              "
+              @click="selectedChoice = 'แหล่งท่องเที่ยว'"
+            />
           </div>
-        </b-container>
+        </b-col>
+        <b-col md="4" cols="4">
+          <div>
+            <i
+              class="fas fa-hotel rounded-icon"
+              :style="
+                selectedChoice != 'ที่พัก'
+                  ? { 'background-color': 'gray' }
+                  : { 'background-color': choices[1].color }
+              "
+              @click="selectedChoice = 'ที่พัก'"
+            />
+          </div>
+        </b-col>
+        <b-col md="4" cols="4">
+          <div>
+            <i
+              class="fas fa-utensils rounded-icon"
+              :style="
+                selectedChoice != 'ร้านอาหาร'
+                  ? { 'background-color': 'gray' }
+                  : { 'background-color': choices[2].color }
+              "
+              @click="selectedChoice = 'ร้านอาหาร'"
+            />
+          </div>
+        </b-col>
+      </b-row>
+      <b-row class="justify-content-center">
+        <b-col md="4" cols="12">
+          <b-row class="justify-content-center">
+            <b-col md="9" cols="12" class="pt-3">
+              <div>
+                <b-input-group class="my-4">
+                  <b-form-input
+                    alternative
+                    type="text"
+                    placeholder="ค้นหาจากชื่อ"
+                    v-model="location"
+                    style="height : 40px"
+                  >
+                  </b-form-input>
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 100%"
+                      ><i class="fa fa-search"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <b-input-group class="my-4">
+                  <b-form-select
+                    alternative
+                    addon-left-icon="ni
+            ni-lock-circle-open"
+                    v-model="district"
+                    style="height : 40px"
+                    :options="options"
+                  />
+
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 100%"
+                      ><i class="fa fa-map-marker"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+
+                <b-input-group
+                  class="my-4"
+                  v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
+                >
+                  <b-form-select
+                    alternative
+                    addon-left-icon="ni
+            ni-lock-circle-open"
+                    v-model="category"
+                    style="height : 40px"
+                    :options="types"
+                  />
+
+                  <b-input-group-prepend style="height : 40px;">
+                    <span class="input-group-text" style="width : 100%"
+                      ><i class="far fa-object-group"></i
+                    ></span>
+                  </b-input-group-prepend>
+                </b-input-group>
+              </div>
+            </b-col> </b-row
+        ></b-col>
+      </b-row>
+
+      <div class="text-center">
+        <b-button class="my-4 w-100" variant="info" @click="search()"
+          >ค้นหา</b-button
+        >
       </div>
     </div>
+
+    <b-container class="my-5" ref="dataResult">
+      <div class="text-center text-danger" v-if="isBusy == true">
+        <b-spinner class="align-middle m-2"></b-spinner>
+        <strong>กำลังค้นหา...</strong>
+      </div>
+      <div
+        v-else-if="result.length == 0 && isSearch == true"
+        class="text-center"
+      >
+        <h1>- ไม่มีข้อมูลใดที่ตรงกับตัวกรองของคุณ -</h1>
+      </div>
+
+      <div
+        v-if="isBusy == false && selectedChoice == 'แหล่งท่องเที่ยว'"
+        class="hide-desktop"
+      >
+        <b-row>
+          <b-col
+            md="12"
+            cols="12"
+            v-for="(p, index) in result"
+            v-bind:key="index"
+          >
+            <b-card
+              :img-src="imgPath + p.img"
+              img-alt="Card image"
+              img-top
+              img-height="200"
+              img-width="250"
+              class="mb-3"
+            >
+              <b-card-text
+                ><h3>{{ p.name }}</h3></b-card-text
+              >
+
+              <b-card-text
+                >ที่ตั้ง:
+                {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
+              </b-card-text>
+              <b-card-text>
+                โทร:
+                <span v-if="result.phone">
+                  <a :href="'tel:' + p.phone">{{ p.phone }}</a>
+                </span>
+                <span v-else>-</span>
+              </b-card-text>
+              <a :href="'/attractions/' + p.name.replace(' ', '-')">
+                <b-button variant="info" class="m-1">ดูรายละเอียด</b-button></a
+              >
+              <a
+                :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
+                target="_blank"
+              >
+                <b-button variant="outline-info" class="m-1"
+                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
+                ></a
+              >
+            </b-card>
+          </b-col>
+        </b-row>
+      </div>
+
+      <div
+        v-if="
+          isBusy == false &&
+            selectedChoice == 'แหล่งท่องเที่ยว' &&
+            isSearch == true
+        "
+        class="hide-mobile"
+      >
+        <b-row>
+          <b-col
+            md="12"
+            cols="12"
+            v-for="(p, index) in result"
+            v-bind:key="index"
+          >
+            <b-card
+              :img-src="imgPath + p.img"
+              img-alt="Card image"
+              img-left
+              img-height="200"
+              img-width="300"
+              class="mb-3"
+            >
+              <b-card-text
+                ><h2>{{ p.name }}</h2></b-card-text
+              >
+
+              <b-card-text>
+                ที่ตั้ง:
+                {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
+              </b-card-text>
+              <b-card-text>
+                โทร:
+                <span v-if="p.phone">
+                  <a :href="'tel:' + p.phone">{{ p.phone }}</a>
+                </span>
+                <span v-else>-</span>
+              </b-card-text>
+              <a :href="'/attractions/' + p.name.replace(' ', '-')"
+                ><b-button variant="info" class="m-1">ดูรายละเอียด</b-button></a
+              >
+              <a
+                :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
+                target="_blank"
+              >
+                <b-button variant="outline-info" class="m-1"
+                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
+                ></a
+              >
+            </b-card>
+          </b-col>
+        </b-row>
+      </div>
+      <div
+        v-if="isBusy == false && selectedChoice == 'ที่พัก' && isSearch == true"
+      >
+        <b-table
+          hover
+          :items="result"
+          :fields="hotelfields"
+          responsive
+          small
+          id="hotel-list"
+          :per-page="perPage"
+          :current-page="currentPage"
+          style="width: 100%"
+        >
+          <template v-slot:cell(location)="data">
+            <span
+              >ตำบล{{ data.item.subDistrict }} อำเภอ{{
+                data.item.district
+              }}
+              จังหวัดเลย</span
+            ></template
+          >
+
+          <template v-slot:cell(phone)="data">
+            <span>
+              <a :href="'tel:' + data.item.phone">{{
+                data.item.phone
+              }}</a></span
+            ></template
+          >
+
+          <template v-slot:cell(btn)="data">
+            <span>
+              <a :href="data.item.url"
+                ><b-button variant="info" class="m-1"
+                  >ดูแหล่งอ้างอิง</b-button
+                ></a
+              >
+              <a
+                :href="
+                  `http://maps.apple.com/maps?q=${data.item.lat},${data.item.lon}`
+                "
+                target="_blank"
+              >
+                <b-button variant="outline-info" class="m-1"
+                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
+                ></a
+              ></span
+            ></template
+          >
+
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="result.length"
+            :per-page="perPage"
+            aria-controls="hotel-list"
+            style="float:right"
+          ></b-pagination>
+        </b-table>
+      </div>
+      <div
+        v-if="
+          isBusy == false && selectedChoice == 'ร้านอาหาร' && isSearch == true
+        "
+      >
+        <b-table
+          hover
+          :items="result"
+          :fields="resfields"
+          responsive
+          small
+          id="restaurant-list"
+          :per-page="perPage"
+          :current-page="currentPage"
+          style="width: 100%"
+        >
+          <template v-slot:cell(location)="data">
+            <span
+              >ตำบล{{ data.item.subDistrict }} อำเภอ{{
+                data.item.district
+              }}
+              จังหวัดเลย</span
+            ></template
+          >
+
+          <template v-slot:cell(phone)="data">
+            <span>
+              <a :href="'tel:' + data.item.phone">{{
+                data.item.phone
+              }}</a></span
+            ></template
+          >
+
+          <template v-slot:cell(btn)="data">
+            <span>
+              <a :href="data.item.url"
+                ><b-button variant="info" class="m-1"
+                  >ดูแหล่งอ้างอิง</b-button
+                ></a
+              >
+              <a
+                :href="
+                  `http://maps.apple.com/maps?q=${data.item.lat},${data.item.lon}`
+                "
+                target="_blank"
+              >
+                <b-button variant="outline-info" class="m-1"
+                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
+                ></a
+              ></span
+            ></template
+          >
+
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="result.length"
+            :per-page="perPage"
+            aria-controls="restaurant-list"
+            style="float:right"
+          ></b-pagination>
+        </b-table>
+      </div>
+    </b-container>
   </div>
 </template>
 <script>
@@ -385,10 +491,65 @@ export default {
   name: "home",
   data() {
     return {
+      perPage: 10,
+      currentPage: 1,
       location: "",
       district: "",
       category: "",
       isBusy: false,
+      hotelfields: [
+        {
+          key: "name",
+          label: "ชื่อที่พัก",
+          class: "text-left align-middle w-180",
+          stickyColumn: true,
+        },
+        {
+          key: "room",
+          label: "จำนวนห้องพัก (ห้อง)",
+          class: "text-right align-middle w-180",
+          sortable: true,
+        },
+        {
+          key: "location",
+          label: "ที่อยู่",
+          class: "text-left align-middle w-180",
+        },
+        {
+          key: "phone",
+          label: "เบอร์ติดต่อ",
+          class: "text-left align-middle w-180",
+        },
+        {
+          key: "btn",
+          label: "",
+          class: "text-left align-middle w-180",
+        },
+      ],
+
+      resfields: [
+        {
+          key: "name",
+          label: "ชื่อร้านอาหาร",
+          class: "text-left align-middle w-180",
+          stickyColumn: true,
+        },
+        {
+          key: "location",
+          label: "ที่อยู่",
+          class: "text-left align-middle w-180",
+        },
+        {
+          key: "phone",
+          label: "เบอร์ติดต่อ",
+          class: "text-left align-middle w-180",
+        },
+        {
+          key: "btn",
+          label: "",
+          class: "text-left align-middle w-180",
+        },
+      ],
       options: [
         { text: "ทุกอำเภอ", value: "" },
         "เชียงคาน",
@@ -433,6 +594,7 @@ export default {
       this.result = [];
       this.location = "";
       this.category = "";
+      this.currentPage = 1;
     },
   },
   methods: {
@@ -444,13 +606,17 @@ export default {
       var route = null;
       if (this.selectedChoice == "แหล่งท่องเที่ยว")
         route = `attractions/get-attractions-by-filter?district=${this.district}&category=${this.category}&name=${this.location}`;
+      if (this.selectedChoice == "ที่พัก")
+        route = `hotels/get-hotels-by-filter?district=${this.district}&name=${this.location}`;
+      if (this.selectedChoice == "ร้านอาหาร")
+        route = `restaurants/get-restaurants-by-filter?district=${this.district}&name=${this.location}`;
       let res = await api.get(route);
       this.result = res.data;
       this.isBusy = false;
 
-      var element = this.$refs.dataResult1;
-      var element2 = this.$refs.dataResult2;
-      var top = element.offsetTop > 0 ? element.offsetTop : element2.offsetTop;
+      var element = this.$refs.dataResult;
+
+      var top = element.offsetTop;
 
       setTimeout(function() {
         window.scrollTo(0, top);

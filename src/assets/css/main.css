@@ -28,6 +28,10 @@ body {
   width: 100%;
 }
 
+.w-180 {
+  min-width: 180px;
+}
+
 @media (max-width: 991px) {
   .hide-mobile {
     display: none;
