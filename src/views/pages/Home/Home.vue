@@ -245,7 +245,7 @@
       </div>
     </div>
 
-    <b-container class="my-5" ref="dataResult">
+    <b-container class="my-5 search-result" ref="dataResult">
       <div class="text-center text-danger" v-if="isBusy == true">
         <b-spinner class="align-middle m-2"></b-spinner>
         <strong>กำลังค้นหา...</strong>
@@ -499,7 +499,7 @@ export default {
         {
           key: 'name',
           label: 'ชื่อที่พัก',
-          class: 'text-left align-middle w-180',
+          class: 'text-left align-middle w-180 stay-behind',
           stickyColumn: true,
         },
         {

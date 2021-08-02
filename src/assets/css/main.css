@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 
 html,
 body {
@@ -6,20 +6,29 @@ body {
   min-width: 100%;
   overflow: hidden;
   overflow-y: scroll;
-  font-family: "Prompt", sans-serif;
+  font-family: 'Prompt', sans-serif;
 }
 .card {
   height: 100%;
+}
+
+.stay-behind {
+  z-index: 0;
+}
+
+.b-pagination {
+  position: relative;
+  z-index: 1;
 }
 
 .card-header {
   font-weight: bold;
 }
 .nav-text {
-  font-family: "Prompt", sans-serif;
+  font-family: 'Prompt', sans-serif;
 }
 .container {
-  font-family: "Prompt", sans-serif;
+  font-family: 'Prompt', sans-serif;
 }
 
 .fit-image {
@@ -103,6 +112,7 @@ body {
   width: 100%;
   /* Height of the footer*/
   height: 40px;
+  z-index: 2;
 }
 .nav-text {
   color: white;
