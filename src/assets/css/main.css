@@ -120,7 +120,7 @@ body {
 .home-search {
   margin: auto;
   position: absolute;
-  top: 45%;
+  margin-top: 250px;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   width: 100%;
