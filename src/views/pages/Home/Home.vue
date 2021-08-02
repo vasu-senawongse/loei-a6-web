@@ -441,9 +441,10 @@ export default {
       if (this.isSearch == false) {
         this.isSearch = true;
       }
-      let res = await api.get(
-        `attractions/get-attractions-by-filter?district=${this.district}&category=${this.category}&name=${this.location}`
-      );
+      var route = null;
+      if (this.selectedChoice == "แหล่งท่องเที่ยว")
+        route = `attractions/get-attractions-by-filter?district=${this.district}&category=${this.category}&name=${this.location}`;
+      let res = await api.get(route);
       this.result = res.data;
       this.isBusy = false;
 
