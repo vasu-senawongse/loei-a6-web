@@ -506,9 +506,8 @@ export default {
         },
         {
           key: "room",
-          label: "จำนวนห้องพัก (ห้อง)",
-          class: "text-right align-middle w-180",
-          sortable: true,
+          label: "จำนวนห้องพัก",
+          class: "text-left align-middle w-180",
         },
         {
           key: "location",
