@@ -13,15 +13,15 @@
                 <i
                   class="fa fa-map-marker rounded-icon"
                   :style="
-                    selectedChoice != 'แหล่งท่องเที่ยว'
+                    selectedChoice != 'ทรัพยากรการท่องเที่ยว'
                       ? { 'background-color': 'gray' }
                       : { 'background-color': choices[0].color }
                   "
-                  @click="selectedChoice = 'แหล่งท่องเที่ยว'"
+                  @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
                 />
               </div>
               <div class="text-center">
-                แหล่งท่องเที่ยว
+                ทรัพยากรการท่องเที่ยว
               </div></b-col
             >
             <b-col md="4" sm="6" cols="12">
@@ -101,7 +101,7 @@
 
                 <b-input-group
                   class="my-4"
-                  v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
+                  v-if="selectedChoice == 'ทรัพยากรการท่องเที่ยว'"
                 >
                   <b-form-select
                     alternative
@@ -141,11 +141,11 @@
             <i
               class="fa fa-map-marker rounded-icon"
               :style="
-                selectedChoice != 'แหล่งท่องเที่ยว'
+                selectedChoice != 'ทรัพยากรการท่องเที่ยว'
                   ? { 'background-color': 'gray' }
                   : { 'background-color': choices[0].color }
               "
-              @click="selectedChoice = 'แหล่งท่องเที่ยว'"
+              @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
             />
           </div>
         </b-col>
@@ -216,7 +216,7 @@
 
                 <b-input-group
                   class="my-4"
-                  v-if="selectedChoice == 'แหล่งท่องเที่ยว'"
+                  v-if="selectedChoice == 'ทรัพยากรการท่องเที่ยว'"
                 >
                   <b-form-select
                     alternative
@@ -258,7 +258,7 @@
       </div>
 
       <div
-        v-if="isBusy == false && selectedChoice == 'แหล่งท่องเที่ยว'"
+        v-if="isBusy == false && selectedChoice == 'ทรัพยากรการท่องเที่ยว'"
         class="hide-desktop"
       >
         <b-row>
@@ -310,7 +310,7 @@
       <div
         v-if="
           isBusy == false &&
-            selectedChoice == 'แหล่งท่องเที่ยว' &&
+            selectedChoice == 'ทรัพยากรการท่องเที่ยว' &&
             isSearch == true
         "
         class="hide-mobile"
@@ -587,7 +587,7 @@ export default {
         "ทางศิลปวิทยาการ",
         "จุดหมายตา",
       ],
-      selectedChoice: "แหล่งท่องเที่ยว",
+      selectedChoice: "ทรัพยากรการท่องเที่ยว",
       choices: [{ color: "orange" }, { color: "green" }, { color: "pink" }],
       result: [],
       isSearch: false,
@@ -611,7 +611,7 @@ export default {
         this.isSearch = true;
       }
       var route = null;
-      if (this.selectedChoice == "แหล่งท่องเที่ยว")
+      if (this.selectedChoice == "ทรัพยากรการท่องเที่ยว")
         route = `attractions/get-attractions-by-filter?district=${this.district}&category=${this.category}&name=${this.location}`;
       if (this.selectedChoice == "ที่พัก")
         route = `hotels/get-hotels-by-filter?district=${this.district}&name=${this.location}`;

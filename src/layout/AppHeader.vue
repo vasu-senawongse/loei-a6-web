@@ -33,6 +33,11 @@
         </b-navbar-nav>
         <b-navbar-nav>
           <b-nav-item href="#"
+            ><span class="nav-text">แนะนำการเดินทาง</span></b-nav-item
+          >
+        </b-navbar-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#"
             ><span class="nav-text">ดาวน์โหลดเอกสาร</span></b-nav-item
           >
         </b-navbar-nav>
