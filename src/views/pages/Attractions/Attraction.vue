@@ -73,41 +73,60 @@
       <h3 v-b-toggle.attraction_info>ข้อมูลแหล่งท่องเที่ยว</h3>
 
       <b-collapse id="attraction_info" class="mt-2">
-        <h4>สภาพกายภาพและภูมิประเทศ</h4>
-        <div v-html="result.physical"></div>
+        <div v-if="result.physical">
+          <h4>สภาพกายภาพและภูมิประเทศ</h4>
+          <div v-html="result.physical"></div>
+        </div>
 
-        <h4>คุณค่าทางธรรมชาติ</h4>
-        <div v-html="result.nature"></div>
+        <div v-if="result.nature">
+          <h4>คุณค่าทางธรรมชาติ</h4>
+          <div v-html="result.nature"></div>
+        </div>
 
-        <h4>ธรณีวิทยาและซากดึกดำบรรพ์</h4>
-        <div v-html="result.nature"></div>
+        <div v-if="result.geo">
+          <h4>ธรณีวิทยาและซากดึกดำบรรพ์</h4>
+          <div v-html="result.geo"></div>
+        </div>
 
-        <h4>นิเวศวิทยา</h4>
-        <div v-html="result.nature"></div>
+        <div v-if="result.eco">
+          <h4>นิเวศวิทยา</h4>
+          <div v-html="result.eco"></div>
+        </div>
 
-        <h4>นิเวศวิทยา</h4>
-        <div v-html="result.nature"></div>
+        <div v-if="result.biodiversity">
+          <h4>ความหลากหลายทางชีวภาพ</h4>
+          <div v-html="result.biodiversity"></div>
+        </div>
 
-        <h4>โบราณคดีและประวัติศาสตร์</h4>
-        <div v-html="result.history"></div>
+        <div v-if="result.history">
+          <h4>โบราณคดีและประวัติศาสตร์</h4>
+          <div v-html="result.history"></div>
+        </div>
 
+           <div v-if="result.myth">
         <h4>ตำนานและเรื่องเล่า</h4>
-        <div v-html="result.nature"></div>
+        <div v-html="result.myth"></div>
+           </div>
 
+         <div v-if="result.cultural_heritage">
         <h4>มรดกทางวัฒนธรรม</h4>
-        <div v-html="result.culture"></div>
+        <div v-html="result.cultural_heritage"></div>
 
+                 <div v-if="result.festival">
         <h4>งานประเพณีและเทศกาล</h4>
-        <div v-html="result.culture"></div>
+        <div v-html="result.festival"></div>
 
+                 <div v-if="result.creativetourism">
         <h4>การท่องเที่ยวสร้างสรรค์</h4>
-        <div v-html="result.culture"></div>
+        <div v-html="result.creativetourism"></div></div>
 
+                 <div v-if="result.storytelling">
         <h4>Story Telling</h4>
-        <div v-html="result.culture"></div>
+        <div v-html="result.storytelling"></div></div>
 
+                 <div v-if="result.etc">
         <h4>ข้อมูลน่าสนใจอื่นๆ</h4>
-        <div v-html="result.culture"></div>
+        <div v-html="result.etc"></div></div>
       </b-collapse>
 
       <h3 v-b-toggle.5A_info>ภาพลักษณ์แหล่งท่องเที่ยว (5A)</h3>
