@@ -574,19 +574,7 @@ export default {
         "วังสะพุง",
         "หนองหิน",
       ],
-      types: [
-        { text: "ทุกประเภท", value: "" },
-        "เชิงนิเวศ",
-        "ทางธรรมชาติ",
-        "ทางประวัติศาสตร์",
-        "ทางวัฒนธรรม",
-        "โดยชุมชน",
-        "เชิงเกษตร",
-        "เพื่อนันทนาการ",
-        "เชิงสุขภาพ",
-        "ทางศิลปวิทยาการ",
-        "จุดหมายตา",
-      ],
+      types: [{ text: "ทุกประเภท", value: "" }],
       selectedChoice: "ทรัพยากรการท่องเที่ยว",
       choices: [{ color: "orange" }, { color: "green" }, { color: "pink" }],
       result: [],
@@ -629,6 +617,12 @@ export default {
         window.scrollTo(0, top);
       }, 500);
     },
+  },
+  async mounted() {
+    let res = await api.get("attractions/get-attraction-types");
+    res.data.forEach((i) => {
+      this.types.push(i.name);
+    });
   },
 };
 </script>
