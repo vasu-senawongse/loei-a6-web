@@ -64,7 +64,9 @@
           >
           <b-col cols="6">
             <b-card-text style="float:right">
-              <b-button class="mr-3" variant="warning">ข้อเสนอแนะ</b-button>
+              <b-button class="mr-3" variant="warning" v-b-modal.suggestion
+                >ข้อเสนอแนะ</b-button
+              >
             </b-card-text></b-col
           >
         </b-row>
@@ -103,30 +105,35 @@
           <div v-html="result.history"></div>
         </div>
 
-           <div v-if="result.myth">
-        <h4>ตำนานและเรื่องเล่า</h4>
-        <div v-html="result.myth"></div>
-           </div>
+        <div v-if="result.myth">
+          <h4>ตำนานและเรื่องเล่า</h4>
+          <div v-html="result.myth"></div>
+        </div>
 
-         <div v-if="result.cultural_heritage">
-        <h4>มรดกทางวัฒนธรรม</h4>
-        <div v-html="result.cultural_heritage"></div>
+        <div v-if="result.cultural_heritage">
+          <h4>มรดกทางวัฒนธรรม</h4>
+          <div v-html="result.cultural_heritage"></div>
+        </div>
 
-                 <div v-if="result.festival">
-        <h4>งานประเพณีและเทศกาล</h4>
-        <div v-html="result.festival"></div>
+        <div v-if="result.festival">
+          <h4>งานประเพณีและเทศกาล</h4>
+          <div v-html="result.festival"></div>
+        </div>
 
-                 <div v-if="result.creativetourism">
-        <h4>การท่องเที่ยวสร้างสรรค์</h4>
-        <div v-html="result.creativetourism"></div></div>
+        <div v-if="result.creativetourism">
+          <h4>การท่องเที่ยวสร้างสรรค์</h4>
+          <div v-html="result.creativetourism"></div>
+        </div>
 
-                 <div v-if="result.storytelling">
-        <h4>Story Telling</h4>
-        <div v-html="result.storytelling"></div></div>
+        <div v-if="result.storytelling">
+          <h4>Story Telling</h4>
+          <div v-html="result.storytelling"></div>
+        </div>
 
-                 <div v-if="result.etc">
-        <h4>ข้อมูลน่าสนใจอื่นๆ</h4>
-        <div v-html="result.etc"></div></div>
+        <div v-if="result.etc">
+          <h4>ข้อมูลน่าสนใจอื่นๆ</h4>
+          <div v-html="result.etc"></div>
+        </div>
       </b-collapse>
 
       <h3 v-b-toggle.5A_info>ภาพลักษณ์แหล่งท่องเที่ยว (5A)</h3>
@@ -240,13 +247,30 @@
         </b-row>
       </b-collapse>
     </b-container>
+    <div>
+      <b-modal id="suggestion" title="ข้อเสนอแนะ" size="lg" hide-footer>
+        <div style="height : 100%">
+          <quill-editor
+            ref="myQuillEditor"
+            v-model="content"
+            :options="editorOption"
+            style="height : 100%"
+          />
+        </div>
+      </b-modal>
+    </div>
   </div>
 </template>
 <script>
 import api from "@/services/api.js";
+import { quillEditor } from "vue-quill-editor";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
 export default {
   name: "attraction",
-
+  components: {
+    quillEditor,
+  },
   data() {
     return {
       result: {},
@@ -258,6 +282,11 @@ export default {
       images: [],
       travelMonth: [],
       types: [],
+      content: null,
+      editorOption: {
+        placeholder: "Detail...",
+        theme: "snow",
+      },
       months: [
         {
           value: 1,
