@@ -45,7 +45,10 @@
           </a>
         </b-card-text>
         <b-card-text>
-          <span class="mr-3">การขึ้นทะเบียน/ประกาศ: </span>
+          <span class="mr-3"
+            >การขึ้นทะเบียน/ประกาศ:
+            {{ result.register ? result.register : "-" }}</span
+          >
         </b-card-text>
         <b-row>
           <b-col cols="6">
@@ -67,8 +70,11 @@
               <b-button class="mr-3" variant="warning" v-b-modal.suggestion
                 >ข้อเสนอแนะ</b-button
               >
-            </b-card-text></b-col
-          >
+            </b-card-text>
+            <b-card-text style="float:right">
+              <b-button class="mr-3" variant="info">ดาวน์โหลดเอกสาร</b-button>
+            </b-card-text>
+          </b-col>
         </b-row>
       </b-card>
 
@@ -110,9 +116,9 @@
           <div v-html="result.myth"></div>
         </div>
 
-        <div v-if="result.cultural_heritage">
+        <div v-if="result.culture">
           <h4>มรดกทางวัฒนธรรม</h4>
-          <div v-html="result.cultural_heritage"></div>
+          <div v-html="result.culture"></div>
         </div>
 
         <div v-if="result.festival">
