@@ -72,7 +72,9 @@
               >
             </b-card-text>
             <b-card-text style="float:right">
-              <b-button class="mr-3" variant="info">ดาวน์โหลดเอกสาร</b-button>
+              <b-button class="mr-3" variant="info" v-b-modal.material
+                >ดาวน์โหลดเอกสาร</b-button
+              >
             </b-card-text>
           </b-col>
         </b-row>
@@ -253,6 +255,31 @@
         </b-row>
       </b-collapse>
     </b-container>
+
+    <div>
+      <b-modal id="material" title="เอกสารที่เกี่ยวข่อง" size="lg" hide-footer>
+        <b-table
+          hover
+          :items="material"
+          :fields="fields"
+          responsive
+          small
+          id="material-list"
+          :per-page="perPage"
+          :current-page="currentPage"
+          style="width: 100%"
+        >
+        </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="material.length"
+          :per-page="perPage"
+          aria-controls="material-list"
+          style="float:right"
+        ></b-pagination>
+      </b-modal>
+    </div>
+
     <div>
       <b-modal id="suggestion" title="ข้อเสนอแนะ" size="lg" hide-footer>
         <div style="height : 100%">
@@ -282,10 +309,12 @@ export default {
       result: {},
       apiRoute: `attractions/get-attraction-by-name/${this.$route.params.name}`,
       imgRoute: `attractions/get-attraction-gallery-by-id/`,
+      matRoute: `attractions/get-attraction-material-by-id/`,
       typeRoute: "attractions/get-attraction-types",
       imgPath:
         process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
       images: [],
+      material: [],
       travelMonth: [],
       types: [],
       content: null,
@@ -293,6 +322,20 @@ export default {
         placeholder: "Detail...",
         theme: "snow",
       },
+
+      fields: [
+        {
+          key: "file",
+          label: "ไฟล์",
+          class: "text-left align-middle w-180 stay-behind",
+          stickyColumn: true,
+        },
+        {
+          key: "btn",
+          label: "",
+          class: "text-left align-middle w-180",
+        },
+      ],
       months: [
         {
           value: 1,
@@ -365,6 +408,8 @@ export default {
       var gallery = res2.data;
       let res3 = await api.get(this.typeRoute);
       this.types = res3.data;
+      let res4 = await api.get(this.matRoute + this.result.id);
+      this.material = res4.data;
       gallery.forEach((i) => {
         this.images.push(this.imgPath + i.img);
       });
