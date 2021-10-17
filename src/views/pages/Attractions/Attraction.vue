@@ -269,7 +269,17 @@
           :current-page="currentPage"
           style="width: 100%"
         >
+          <template v-slot:cell(btn)="data">
+            <span>
+              <a :href="imgPath + data.item.path" target="_blank">
+                <b-button variant="outline-info" class="m-1"
+                  ><i class="fa fa-download mr-1" />ดาวน์โหลด</b-button
+                ></a
+              ></span
+            ></template
+          >
         </b-table>
+
         <b-pagination
           v-model="currentPage"
           :total-rows="material.length"
