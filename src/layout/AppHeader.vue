@@ -47,7 +47,7 @@
           >
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="#"
+          <b-nav-item href="/contact"
             ><span class="nav-text">ติดต่อเรา</span></b-nav-item
           >
         </b-navbar-nav>

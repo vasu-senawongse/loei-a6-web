@@ -1,20 +1,21 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import AppHeader from '../layout/AppHeader';
-import AppFooter from '../layout/AppFooter';
-import Home from '../views/pages/Home/Home.vue';
-import Attraction from '../views/pages/Attractions/Attraction.vue';
-import NotFoundPage from '../views/pages/Error/NotFoundPage.vue'; 
+import Vue from "vue";
+import Router from "vue-router";
+import AppHeader from "../layout/AppHeader";
+import AppFooter from "../layout/AppFooter";
+import Home from "../views/pages/Home/Home.vue";
+import Attraction from "../views/pages/Attractions/Attraction.vue";
+import NotFoundPage from "../views/pages/Error/NotFoundPage.vue";
+import ContactPage from "../views/pages/Contacts/Contact.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   hash: false,
-  linkExactActiveClass: 'active',
+  linkExactActiveClass: "active",
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       components: {
         header: AppHeader,
         default: Home,
@@ -22,8 +23,8 @@ export default new Router({
       },
     },
     {
-      path: '/error/not-found',
-      name: 'error.not.found',
+      path: "/error/not-found",
+      name: "error.not.found",
       components: {
         header: AppHeader,
         default: NotFoundPage,
@@ -31,11 +32,20 @@ export default new Router({
       },
     },
     {
-      path: '/attractions/:name',
-      name: 'attraction',
+      path: "/attractions/:name",
+      name: "attraction",
       components: {
         header: AppHeader,
         default: Attraction,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      components: {
+        header: AppHeader,
+        default: ContactPage,
         footer: AppFooter,
       },
     },
