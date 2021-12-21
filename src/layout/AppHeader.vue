@@ -22,7 +22,7 @@
           >
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="#"
+          <b-nav-item href="/introduction"
             ><span class="nav-text">แนะนำโครงการ</span></b-nav-item
           >
         </b-navbar-nav>

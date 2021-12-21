@@ -7,6 +7,7 @@ import Attraction from "../views/pages/Attractions/Attraction.vue";
 import NotFoundPage from "../views/pages/Error/NotFoundPage.vue";
 import ContactPage from "../views/pages/Contacts/Contact.vue";
 import OrganizationPage from "../views/pages/Organizations/Organization.vue";
+import IntroductionPage from "../views/pages/Introductions/Introduction.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -56,6 +57,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: OrganizationPage,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/introduction",
+      name: "introduction",
+      components: {
+        header: AppHeader,
+        default: IntroductionPage,
         footer: AppFooter,
       },
     },
