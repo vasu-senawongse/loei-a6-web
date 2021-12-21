@@ -8,6 +8,7 @@ import NotFoundPage from "../views/pages/Error/NotFoundPage.vue";
 import ContactPage from "../views/pages/Contacts/Contact.vue";
 import OrganizationPage from "../views/pages/Organizations/Organization.vue";
 import IntroductionPage from "../views/pages/Introductions/Introduction.vue";
+import UsagePage from "../views/pages/Usage/Usage.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -66,6 +67,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: IntroductionPage,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/usage",
+      name: "usage",
+      components: {
+        header: AppHeader,
+        default: UsagePage,
         footer: AppFooter,
       },
     },

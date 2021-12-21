@@ -27,7 +27,7 @@
           >
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="#"
+          <b-nav-item href="/usage"
             ><span class="nav-text">แนะนำการใช้งาน</span></b-nav-item
           >
         </b-navbar-nav>
