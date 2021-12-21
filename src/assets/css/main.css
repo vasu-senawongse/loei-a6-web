@@ -143,3 +143,8 @@ body {
   box-shadow: 1px 1px 2px gray, 0 0 25px rgb(224, 224, 224),
     0 0 5px rgb(223, 222, 222);
 }
+
+.zoom-box:hover {
+  transition: transform 0.5s ease;
+  transform: scale(1.25);
+}

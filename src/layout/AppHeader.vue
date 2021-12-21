@@ -42,7 +42,7 @@
           >
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="#"
+          <b-nav-item href="/organization"
             ><span class="nav-text">หน่วยงานที่เกี่ยวข้อง</span></b-nav-item
           >
         </b-navbar-nav>
