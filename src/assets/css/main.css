@@ -25,11 +25,10 @@ body {
   width: 100%;
 }
 .carousel-inner{
-  width:100%;
   max-width: 1520px !important;
-  max-height: 500px !important;
-  left:200px;
-  top: 50px
+  width: 100%;
+  height: 90%;
+  max-height:  500px !important;
 }
 
 .carousel-indicators li {
@@ -48,6 +47,8 @@ body {
   background-color:#066938 !important;
 }
 .carousel-indicators {
+  margin-top: 50px;
+  margin-bottom: 30px;
   bottom: -150px !important;
 }
 
@@ -92,26 +93,9 @@ body {
     display: none;
   }
 
-  .home-body {
-    background-color: #066938;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 600px;
-    color: white;
-  }
-
   .icon{
     object-fit: cover !important;
     display: block;
-  }
-  .rounded-icon {
-    border-radius: 50%;
-    padding-top: 18px;
-    font-size: 36px;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    text-align: center;
   }
 
   .rounded-prepend-icon {
@@ -156,14 +140,6 @@ body {
     top: -15px;
   }
 
-  .home-body {
-    background-color: #066938;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 500px;
-    color: white;
-  }
-
   .nav-link{
     padding: 0px !important;
   }
@@ -202,8 +178,8 @@ body {
   background-color: #066938;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 600px;
-  color: white;
+  height: 90%;
+  padding: 5% 10% 5% 10%;
 }
 
 

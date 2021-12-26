@@ -34,53 +34,42 @@
             style="height:100%"
           >
             <b-col md="4" cols="4">
-              <span
-                class="rounded-icon"
-                style="background-color : #cdd51d"
+              <img
+                src="../../../assets/images/camera.png"
+                class="icon"
+                width="150px"
+                height="150px"
                 @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
-              >
-                <img
-                  src="../../../assets/images/camera.svg"
-                  class="icon"
-                  width="50px"
-                  height="50px"
-                />
-              </span>
+                style="cursor: pointer"
+              />
 
               <div class="text-center">
                 ทรัพยากรการท่องเที่ยว
               </div></b-col
             >
             <b-col md="4" cols="4">
-              <span
-                class="rounded-icon"
-                style="background-color : #00c4ee"
+              <img
+                src="../../../assets/images/bed.png"
+                class="icon"
+                width="150px"
+                height="150px"
                 @click="selectedChoice = 'ที่พัก'"
-              >
-                <img
-                  src="../../../assets/images/bed.svg"
-                  class="icon"
-                  width="50px"
-                  height="50px"
-                />
-              </span>
+                style="cursor: pointer"
+              />
               <div class="text-center">
                 ที่พัก
               </div></b-col
             >
             <b-col md="4" cols="4">
-              <div
-                class="rounded-icon"
-                style="background-color : #ffeb00"
+              <img
+                src="../../../assets/images/dish.png"
+                class="icon"
+                width="150px"
+                height="150px"
                 @click="selectedChoice = 'ร้านอาหาร'"
-              >
-                <img
-                  src="../../../assets/images/dish.svg"
-                  class="icon"
-                  width="50px"
-                  height="50px"
-                />
-              </div>
+                style="cursor: pointer"
+              />
+
               <div class="text-center">
                 ร้านอาหาร
               </div></b-col
