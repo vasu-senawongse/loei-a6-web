@@ -77,7 +77,6 @@
                     type="text"
                     placeholder="ค้นหาจากชื่อ"
                     v-model="location"
-                    style="height : 40px"
                     id="input-field"
                   >
                   </b-form-input>
@@ -87,7 +86,6 @@
                   <b-form-select
                     alternative
                     v-model="district"
-                    style="height : 40px"
                     :options="options"
                     id="input-field"
                   />
@@ -100,7 +98,6 @@
                   <b-form-select
                     alternative
                     v-model="category"
-                    style="height : 40px"
                     :options="types"
                     id="input-field"
                   />
@@ -381,7 +378,7 @@ export default {
         },
       ],
       options: [
-        { text: "อำเภอ", value: "" },
+        { text: "ทุกอำเภอ", value: "" },
         "เชียงคาน",
         "เมืองเลย",
         "เอราวัณ",
@@ -397,7 +394,7 @@ export default {
         "วังสะพุง",
         "หนองหิน",
       ],
-      types: [{ text: "ประเภท", value: "" }],
+      types: [{ text: "ทุกประเภท", value: "" }],
       selectedChoice: "ทรัพยากรการท่องเที่ยว",
       choices: [{ color: "orange" }, { color: "green" }, { color: "pink" }],
       result: [],
