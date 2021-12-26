@@ -1,11 +1,12 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" variant="faded" type="dark"
-      ><h2 class="text-center w-100 hide-mobile nav-text" style="color : white">
+    <div class="text-center mb-5">
+      <span class="hide-mobile system-head">
         ระบบฐานข้อมูลการท่องเที่ยวอย่างยั่งยืนในพื้นที่พิเศษเลย
-      </h2></b-navbar
-    >
-    <b-navbar toggleable="lg" variant="faded" type="dark">
+      </span>
+    </div>
+
+    <b-navbar toggleable="lg" variant="faded" type="light">
       <a href="/">
         <b-navbar-brand
           tag="h1"
@@ -17,43 +18,78 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/"
-            ><span class="nav-text">หน้าหลัก</span></b-nav-item
-          >
+          <b-nav-item href="/" class="text-center">
+            <div>
+              <img src="../assets/images/home.svg" height="30px" />
+            </div>
+            <div>
+              <span class="nav-text">หน้าหลัก</span>
+            </div>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="/introduction"
-            ><span class="nav-text">แนะนำโครงการ</span></b-nav-item
-          >
+          <b-nav-item href="/introduction" class="text-center">
+            <div>
+              <img src="../assets/images/bullseye.svg" height="30px" />
+            </div>
+            <div>
+              <span class="nav-text">แนะนำโครงการ</span>
+            </div>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="/usage"
-            ><span class="nav-text">แนะนำการใช้งาน</span></b-nav-item
-          >
+          <b-nav-item href="/usage" class="text-center">
+            <div>
+              <img src="../assets/images/document.svg" height="30px" />
+            </div>
+            <div>
+              <span class="nav-text">แนะนำการใช้งาน</span>
+            </div>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="#"
-            ><span class="nav-text">แนะนำการเดินทาง</span></b-nav-item
-          >
+          <b-nav-item href="#" class="text-center">
+            <div>
+              <img src="../assets/images/car.svg" height="30px" />
+            </div>
+            <div>
+              <span class="nav-text">แนะนำการเดินทาง</span>
+            </div>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="#"
-            ><span class="nav-text">ดาวน์โหลดเอกสาร</span></b-nav-item
-          >
+          <b-nav-item href="#" class="text-center">
+            <div>
+              <img src="../assets/images/download.svg" height="30px" />
+            </div>
+            <div>
+              <span class="nav-text">ดาวน์โหลดเอกสาร</span>
+            </div>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="/organization"
-            ><span class="nav-text">หน่วยงานที่เกี่ยวข้อง</span></b-nav-item
-          >
+          <b-nav-item href="/organization" class="text-center">
+            <div>
+              <img src="../assets/images/link.svg" height="30px" />
+            </div>
+            <div>
+              <span class="nav-text">หน่วยงานที่เกี่ยวข้อง</span>
+            </div>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="/contact"
-            ><span class="nav-text">ติดต่อเรา</span></b-nav-item
-          >
+          <b-nav-item href="/contact" class="text-center">
+            <div>
+              <img src="../assets/images/phone.svg" height="30px" />
+            </div>
+            <div>
+              <span class="nav-text-last">ติดต่อเรา</span>
+            </div>
+          </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item href="http://43.229.149.124:3000/" target="_blank"
-            ><span class="nav-text"
+            ><span
               ><b-button variant="warning">ผู้ดูแลระบบ</b-button></span
             ></b-nav-item
           >

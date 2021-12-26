@@ -1,6 +1,6 @@
 <template>
   <div class="justify-content-center text-light footer">
-    <footer class="nav-text">
+    <footer>
       <small class="rights">
         <span class="copyright">
           &copy; 2021

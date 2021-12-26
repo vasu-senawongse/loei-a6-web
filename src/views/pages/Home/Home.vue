@@ -1,55 +1,84 @@
 <template>
   <div class="mb-5">
     <div class="home-body hide-mobile">
-      <b-row class="home-search justify-content-center nav-text ">
-        <b-col md="4" cols="12" class="form-background">
+      <div class="text-center" style="height:50%">
+        <b-carousel
+          id="carousel-fade"
+          style="text-shadow: 0px 0px 2px #000"
+          fade
+          indicators
+          controls
+          img-width="800"
+          img-height="375"
+        >
+          <b-carousel-slide
+            img-src="https://picsum.photos/1024/480/?image=10"
+          ></b-carousel-slide>
+          <b-carousel-slide
+            img-src="https://picsum.photos/1024/480/?image=12"
+          ></b-carousel-slide>
+          <b-carousel-slide
+            img-src="https://picsum.photos/1024/480/?image=22"
+          ></b-carousel-slide>
+        </b-carousel>
+      </div>
+    </div>
+
+    <b-container class="my-5 search-result" ref="dataResult">
+      <hr style="border-top: 3px solid #85bc3f;" />
+      <b-row class="home-search justify-content-center">
+        <b-col md="6" cols="12">
           <b-row
             class="justify-content-center text-center"
             align-v="center"
             style="height:100%"
           >
-            <b-col md="4" sm="6" cols="12">
-              <div>
-                <i
-                  class="fa fa-map-marker rounded-icon"
-                  :style="
-                    selectedChoice != 'ทรัพยากรการท่องเที่ยว'
-                      ? { 'background-color': 'gray' }
-                      : { 'background-color': choices[0].color }
-                  "
-                  @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
+            <b-col md="4" cols="4">
+              <span
+                class="rounded-icon"
+                style="background-color : #cdd51d"
+                @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
+              >
+                <img
+                  src="../../../assets/images/camera.svg"
+                  class="icon"
+                  width="50px"
+                  height="50px"
                 />
-              </div>
+              </span>
+
               <div class="text-center">
                 ทรัพยากรการท่องเที่ยว
               </div></b-col
             >
-            <b-col md="4" sm="6" cols="12">
-              <div>
-                <i
-                  class="fas fa-hotel rounded-icon"
-                  :style="
-                    selectedChoice != 'ที่พัก'
-                      ? { 'background-color': 'gray' }
-                      : { 'background-color': choices[1].color }
-                  "
-                  @click="selectedChoice = 'ที่พัก'"
+            <b-col md="4" cols="4">
+              <span
+                class="rounded-icon"
+                style="background-color : #00c4ee"
+                @click="selectedChoice = 'ที่พัก'"
+              >
+                <img
+                  src="../../../assets/images/bed.svg"
+                  class="icon"
+                  width="50px"
+                  height="50px"
                 />
-              </div>
+              </span>
               <div class="text-center">
                 ที่พัก
               </div></b-col
             >
-            <b-col md="4" cols="12">
-              <div>
-                <i
-                  class="fas fa-utensils rounded-icon"
-                  :style="
-                    selectedChoice != 'ร้านอาหาร'
-                      ? { 'background-color': 'gray' }
-                      : { 'background-color': choices[2].color }
-                  "
-                  @click="selectedChoice = 'ร้านอาหาร'"
+            <b-col md="4" cols="4">
+              <div
+                class="rounded-icon"
+                style="background-color : #ffeb00"
+                @click="selectedChoice = 'ร้านอาหาร'"
+              >
+                <img
+                  src="../../../assets/images/dish.svg"
+                  class="icon"
+                  width="50px"
+                  height="50px"
                 />
               </div>
               <div class="text-center">
@@ -58,7 +87,7 @@
             >
           </b-row>
         </b-col>
-        <b-col md="4" cols="12" class="form-background">
+        <b-col md="6" cols="12">
           <b-row class="justify-content-center">
             <b-col md="9" cols="12" class="pt-3">
               <div>
@@ -73,30 +102,19 @@
                     placeholder="ค้นหาจากชื่อ"
                     v-model="location"
                     style="height : 40px"
+                    id="input-field"
                   >
                   </b-form-input>
-                  <b-input-group-prepend style="height : 40px;">
-                    <span class="input-group-text" style="width : 100%"
-                      ><i class="fa fa-search"></i
-                    ></span>
-                  </b-input-group-prepend>
                 </b-input-group>
 
                 <b-input-group class="my-4">
                   <b-form-select
                     alternative
-                    addon-left-icon="ni
-            ni-lock-circle-open"
                     v-model="district"
                     style="height : 40px"
                     :options="options"
+                    id="input-field"
                   />
-
-                  <b-input-group-prepend style="height : 40px;">
-                    <span class="input-group-text" style="width : 100%"
-                      ><i class="fa fa-map-marker"></i
-                    ></span>
-                  </b-input-group-prepend>
                 </b-input-group>
 
                 <b-input-group
@@ -105,18 +123,11 @@
                 >
                   <b-form-select
                     alternative
-                    addon-left-icon="ni
-            ni-lock-circle-open"
                     v-model="category"
                     style="height : 40px"
                     :options="types"
+                    id="input-field"
                   />
-
-                  <b-input-group-prepend style="height : 40px;">
-                    <span class="input-group-text" style="width : 100%"
-                      ><i class="far fa-object-group"></i
-                    ></span>
-                  </b-input-group-prepend>
                 </b-input-group>
 
                 <div class="text-center">
@@ -129,123 +140,9 @@
           </b-row></b-col
         >
       </b-row>
-    </div>
-    <div class="home-body p-3 nav-text hide-desktop">
-      <div class="text-center pt-3">
-        <h4>ค้นหาข้อมูล{{ selectedChoice }}</h4>
-      </div>
 
-      <b-row class="justify-content-center text-center my-4">
-        <b-col md="4" cols="4">
-          <div>
-            <i
-              class="fa fa-map-marker rounded-icon"
-              :style="
-                selectedChoice != 'ทรัพยากรการท่องเที่ยว'
-                  ? { 'background-color': 'gray' }
-                  : { 'background-color': choices[0].color }
-              "
-              @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
-            />
-          </div>
-        </b-col>
-        <b-col md="4" cols="4">
-          <div>
-            <i
-              class="fas fa-hotel rounded-icon"
-              :style="
-                selectedChoice != 'ที่พัก'
-                  ? { 'background-color': 'gray' }
-                  : { 'background-color': choices[1].color }
-              "
-              @click="selectedChoice = 'ที่พัก'"
-            />
-          </div>
-        </b-col>
-        <b-col md="4" cols="4">
-          <div>
-            <i
-              class="fas fa-utensils rounded-icon"
-              :style="
-                selectedChoice != 'ร้านอาหาร'
-                  ? { 'background-color': 'gray' }
-                  : { 'background-color': choices[2].color }
-              "
-              @click="selectedChoice = 'ร้านอาหาร'"
-            />
-          </div>
-        </b-col>
-      </b-row>
-      <b-row class="justify-content-center">
-        <b-col md="4" cols="12">
-          <b-row class="justify-content-center">
-            <b-col md="9" cols="12" class="pt-3">
-              <div>
-                <b-input-group class="my-4">
-                  <b-form-input
-                    alternative
-                    type="text"
-                    placeholder="ค้นหาจากชื่อ"
-                    v-model="location"
-                    style="height : 40px"
-                  >
-                  </b-form-input>
-                  <b-input-group-prepend style="height : 40px;">
-                    <span class="input-group-text" style="width : 100%"
-                      ><i class="fa fa-search"></i
-                    ></span>
-                  </b-input-group-prepend>
-                </b-input-group>
+      <hr style="border-top: 3px solid #85bc3f;" />
 
-                <b-input-group class="my-4">
-                  <b-form-select
-                    alternative
-                    addon-left-icon="ni
-            ni-lock-circle-open"
-                    v-model="district"
-                    style="height : 40px"
-                    :options="options"
-                  />
-
-                  <b-input-group-prepend style="height : 40px;">
-                    <span class="input-group-text" style="width : 100%"
-                      ><i class="fa fa-map-marker"></i
-                    ></span>
-                  </b-input-group-prepend>
-                </b-input-group>
-
-                <b-input-group
-                  class="my-4"
-                  v-if="selectedChoice == 'ทรัพยากรการท่องเที่ยว'"
-                >
-                  <b-form-select
-                    alternative
-                    addon-left-icon="ni
-            ni-lock-circle-open"
-                    v-model="category"
-                    style="height : 40px"
-                    :options="types"
-                  />
-
-                  <b-input-group-prepend style="height : 40px;">
-                    <span class="input-group-text" style="width : 100%"
-                      ><i class="far fa-object-group"></i
-                    ></span>
-                  </b-input-group-prepend>
-                </b-input-group>
-              </div>
-            </b-col> </b-row
-        ></b-col>
-      </b-row>
-
-      <div class="text-center">
-        <b-button class="my-4 w-100" variant="info" @click="search()"
-          >ค้นหา</b-button
-        >
-      </div>
-    </div>
-
-    <b-container class="my-5 search-result" ref="dataResult">
       <div class="text-center text-danger" v-if="isBusy == true">
         <b-spinner class="align-middle m-2"></b-spinner>
         <strong>กำลังค้นหา...</strong>
