@@ -26,7 +26,7 @@
                   style="cursor: pointer"
                 />
               </div>
-              <div class="text-center">
+              <div class="text-center hide-mobile">
                 ทรัพยากรการท่องเที่ยว
               </div></b-col
             >
@@ -42,7 +42,7 @@
                 />
               </div>
 
-              <div class="text-center">
+              <div class="text-center hide-mobile">
                 ที่พัก
               </div></b-col
             >
@@ -57,7 +57,7 @@
                   style="cursor: pointer"
                 />
               </div>
-              <div class="text-center">
+              <div class="text-center hide-mobile">
                 ร้านอาหาร
               </div></b-col
             >
@@ -117,8 +117,8 @@
                 </div>
               </div>
             </b-col>
-          </b-row></b-col
-        >
+          </b-row>
+        </b-col>
       </b-row>
 
       <hr style="border-top: 3px solid #85bc3f;" />
@@ -135,105 +135,51 @@
       </div>
 
       <div
-        v-if="isBusy == false && selectedChoice == 'ทรัพยากรการท่องเที่ยว'"
-        class="hide-desktop"
-      >
-        <b-row>
-          <b-col
-            md="12"
-            cols="12"
-            v-for="(p, index) in result"
-            v-bind:key="index"
-          >
-            <b-card
-              :img-src="imgPath + p.img"
-              img-alt="Card image"
-              img-top
-              img-height="200"
-              img-width="250"
-              class="mb-3"
-            >
-              <b-card-text
-                ><h3>{{ p.name }}</h3></b-card-text
-              >
-
-              <b-card-text
-                >ที่ตั้ง:
-                {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
-              </b-card-text>
-              <b-card-text>
-                โทร:
-                <span v-if="result.phone">
-                  <a :href="'tel:' + p.phone">{{ p.phone }}</a>
-                </span>
-                <span v-else>-</span>
-              </b-card-text>
-              <a :href="'/attractions/' + p.name.replace(' ', '-')">
-                <b-button variant="info" class="m-1">ดูรายละเอียด</b-button></a
-              >
-              <a
-                :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
-                target="_blank"
-              >
-                <b-button variant="outline-info" class="m-1"
-                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
-                ></a
-              >
-            </b-card>
-          </b-col>
-        </b-row>
-      </div>
-
-      <div
         v-if="
           isBusy == false &&
             selectedChoice == 'ทรัพยากรการท่องเที่ยว' &&
             isSearch == true
         "
-        class="hide-mobile"
       >
-        <b-row>
-          <b-col
-            md="12"
-            cols="12"
-            v-for="(p, index) in result"
-            v-bind:key="index"
-          >
-            <b-card
-              :img-src="imgPath + p.img"
-              img-alt="Card image"
-              img-left
-              img-height="200"
-              img-width="300"
-              class="mb-3"
-            >
-              <b-card-text
-                ><h2>{{ p.name }}</h2></b-card-text
-              >
-
-              <b-card-text>
-                ที่ตั้ง:
+        <b-row v-for="(p, index) in result" v-bind:key="index" class="my-3">
+          <b-col md="3" cols="12" class="fit-image">
+            <img :src="imgPath + p.img" width="100%" />
+          </b-col>
+          <b-col md="9" cols="12">
+            <h3 class="card-text">{{ p.name }}</h3>
+            <div>
+              <span class="card-text">
                 {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
-              </b-card-text>
-              <b-card-text>
-                โทร:
-                <span v-if="p.phone">
-                  <a :href="'tel:' + p.phone">{{ p.phone }}</a>
-                </span>
-                <span v-else>-</span>
-              </b-card-text>
-              <a :href="'/attractions/' + p.name.replace(' ', '-')"
-                ><b-button variant="info" class="m-1">ดูรายละเอียด</b-button></a
+              </span>
+            </div>
+            <div>
+              โทร:
+              <span v-if="p.phone">
+                <a :href="'tel:' + p.phone">{{ p.phone }}</a>
+              </span>
+            </div>
+            <div class="mt-2">
+              <a
+                :href="'/attractions/' + p.name.replace(' ', '-')"
+                class="zoom-box mx-3"
               >
+                <span class="mr-3" style="display : inline">
+                  <img src="../../../assets/images/info.svg" width="50px" />
+                  ข้อมูล
+                </span>
+              </a>
               <a
                 :href="`http://maps.apple.com/maps?q=${p.lat},${p.lon}`"
                 target="_blank"
+                class="zoom-box"
               >
-                <b-button variant="outline-info" class="m-1"
-                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
-                ></a
-              >
-            </b-card>
+                <span class="mr-3" style="display : inline">
+                  <img src="../../../assets/images/map.svg" width="50px" />
+                  แผนที่
+                </span>
+              </a>
+            </div>
+            <hr style="border-top: 3px solid #85bc3f;" class="mt-5" />
           </b-col>
         </b-row>
       </div>
