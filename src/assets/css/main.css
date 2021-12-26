@@ -47,10 +47,6 @@ body {
   border-color: 3px solid #066938 !important;
   background-color:#066938 !important;
 }
-.carousel-indicators {
-  margin: 20px !important;
-  bottom: calc(250px + 100vw - 1024px) !important;
-}
 
 body {
   background-color: lightslategray;
@@ -112,8 +108,36 @@ body {
     height: 50px;
     cursor: pointer;
     text-align: center;
+  }  
+  
+  .carousel-indicators {
+    margin: 20px !important;
+    bottom: -80px !important;
   }
 }
+
+
+@media (max-width: 1200px) and (min-width: 992px) {
+  .carousel-indicators {
+    margin: 20px !important;
+    bottom: -100px !important;
+  }
+}
+
+@media (max-width: 1600px) and (min-width: 1201px) {
+  .carousel-indicators {
+    margin: 20px !important;
+    bottom: -130px !important;
+  }
+}
+
+@media (min-width: 1601px) {
+  .carousel-indicators {
+    margin: 20px !important;
+    bottom: -150px !important;
+  }
+}
+
 
 @media (min-width: 992px) {
   .hide-desktop {
