@@ -138,6 +138,31 @@ body {
   }
 }
 
+@media (min-width: 992px) and (max-width: 1315px) {
+  .nav-item{
+    text-align: center;
+    border-color: #8cb267;
+    border-left: 3px solid #8cb267;
+  }
+  .last-nav{
+    border-right: 3px solid #8cb267;
+  }
+}
+
+
+@media (min-width: 1316px) {
+  .nav-item{
+    min-width: 130px;
+    text-align: center;
+    border-color: #8cb267;
+    border-left: 3px solid #8cb267;
+  }
+
+  .last-nav{
+    border-right: 3px solid #8cb267;
+  }
+
+}
 
 @media (min-width: 992px) {
   .hide-desktop {
@@ -182,16 +207,10 @@ body {
   }
   
   .nav-item{
-    min-width: 130px;
     text-align: center;
     border-color: #8cb267;
     border-left: 3px solid #8cb267;
   }
-
-  .last-nav{
-    border-right: 3px solid #8cb267;
-  }
-
   .zoom-box:hover {
     transition: transform 0.5s ease;
     transform: scale(1.25);
