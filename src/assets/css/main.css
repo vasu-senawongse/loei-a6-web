@@ -243,6 +243,10 @@ body {
   margin-bottom: 0px;
 }
 
+.card-text a{
+  color: #066938 !important;
+}
+
 .home-body {
   background-color: #066938;
   background-repeat: no-repeat;

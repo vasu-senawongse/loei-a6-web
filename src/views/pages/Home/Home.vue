@@ -154,7 +154,7 @@
             </h3>
             <div>
               <span class="card-text">
-                {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
+                {{ `ตำบล${p.subDistrict} อำเภอ${p.district}` }}
               </span>
             </div>
             <div>
@@ -210,11 +210,8 @@
         >
           <template v-slot:cell(location)="data">
             <span
-              >ตำบล{{ data.item.subDistrict }} อำเภอ{{
-                data.item.district
-              }}
-              จังหวัดเลย</span
-            ></template
+              >ตำบล{{ data.item.subDistrict }} อำเภอ{{ data.item.district }}
+            </span></template
           >
 
           <template v-slot:cell(phone)="data">
@@ -271,11 +268,8 @@
         >
           <template v-slot:cell(location)="data">
             <span
-              >ตำบล{{ data.item.subDistrict }} อำเภอ{{
-                data.item.district
-              }}
-              จังหวัดเลย</span
-            ></template
+              >ตำบล{{ data.item.subDistrict }} อำเภอ{{ data.item.district }}
+            </span></template
           >
 
           <template v-slot:cell(phone)="data">
