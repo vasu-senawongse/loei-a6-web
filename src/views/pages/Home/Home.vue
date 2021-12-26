@@ -147,7 +147,11 @@
             <img :src="imgPath + p.img" width="100%" />
           </b-col>
           <b-col md="9" cols="12">
-            <h3 class="card-text">{{ p.name }}</h3>
+            <h3 class="card-text">
+              <a :href="'/attractions/' + p.name.replace(' ', '-')">{{
+                p.name
+              }}</a>
+            </h3>
             <div>
               <span class="card-text">
                 {{ `ตำบล${p.subDistrict} อำเภอ${p.district} จังหวัดเลย` }}
