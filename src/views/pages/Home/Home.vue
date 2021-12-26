@@ -134,6 +134,10 @@
         <h1>- ไม่มีข้อมูลใดที่ตรงกับตัวกรองของคุณ -</h1>
       </div>
 
+      <div class="text-center" v-if="isBusy == false && isSearch == true">
+        พบ{{ selectedChoice }} {{ result.length }} แห่ง
+      </div>
+
       <div
         v-if="
           isBusy == false &&
