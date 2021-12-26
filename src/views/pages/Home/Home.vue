@@ -224,9 +224,8 @@
             <span>
               <a :href="data.item.url"
                 ><b-button variant="info" class="m-1"
-                  >ดูแหล่งอ้างอิง</b-button
-                ></a
-              >
+                  ><i class="fa fa-link"/></b-button
+              ></a>
               <a
                 :href="
                   `http://maps.apple.com/maps?q=${data.item.lat},${data.item.lon}`
@@ -234,11 +233,8 @@
                 target="_blank"
               >
                 <b-button variant="outline-info" class="m-1"
-                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
-                ></a
-              ></span
-            ></template
-          >
+                  ><i class="fa fa-map-marker"/></b-button></a></span
+          ></template>
         </b-table>
         <b-pagination
           v-model="currentPage"
@@ -289,9 +285,8 @@
             <span>
               <a :href="data.item.url"
                 ><b-button variant="info" class="m-1"
-                  >ดูแหล่งอ้างอิง</b-button
-                ></a
-              >
+                  ><i class="fa fa-link"/></b-button
+              ></a>
               <a
                 :href="
                   `http://maps.apple.com/maps?q=${data.item.lat},${data.item.lon}`
@@ -299,11 +294,8 @@
                 target="_blank"
               >
                 <b-button variant="outline-info" class="m-1"
-                  ><i class="fa fa-map-marker mr-1" />ดูแผนที่</b-button
-                ></a
-              ></span
-            ></template
-          >
+                  ><i class="fa fa-map-marker"/></b-button></a></span
+          ></template>
         </b-table>
         <b-pagination
           v-model="currentPage"
