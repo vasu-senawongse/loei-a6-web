@@ -11,6 +11,7 @@ body {
   min-width: 100%;
   font-family: 'Supermarket' !important;
   padding-bottom: 40px;
+  background-color: white !important;
 }
 .card {
   height: 100%;
