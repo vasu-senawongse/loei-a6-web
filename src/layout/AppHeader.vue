@@ -78,20 +78,18 @@
           </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="/contact" class="text-center">
+          <b-nav-item href="/contact" class="text-center last-nav">
             <div>
               <img src="../assets/images/phone.svg" height="30px" />
             </div>
             <div>
-              <span class="nav-text-last">ติดต่อเรา</span>
+              <span class="nav-text">ติดต่อเรา</span>
             </div>
           </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="http://43.229.149.124:3000/" target="_blank"
-            ><span
-              ><b-button variant="warning">ผู้ดูแลระบบ</b-button></span
-            ></b-nav-item
+          <a href="http://43.229.149.124:3000/" target="_blank"
+            ><span><b-button variant="warning">ผู้ดูแลระบบ</b-button></span></a
           >
         </b-navbar-nav>
       </b-collapse>

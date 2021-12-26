@@ -1,26 +1,8 @@
 <template>
   <div class="mb-5">
-    <div class="home-body hide-mobile">
+    <div class="home-body">
       <div class="text-center" style="height:50%">
-        <b-carousel
-          id="carousel-fade"
-          style="text-shadow: 0px 0px 2px #000"
-          fade
-          indicators
-          controls
-          img-width="800"
-          img-height="375"
-        >
-          <b-carousel-slide
-            img-src="https://picsum.photos/1024/480/?image=10"
-          ></b-carousel-slide>
-          <b-carousel-slide
-            img-src="https://picsum.photos/1024/480/?image=12"
-          ></b-carousel-slide>
-          <b-carousel-slide
-            img-src="https://picsum.photos/1024/480/?image=22"
-          ></b-carousel-slide>
-        </b-carousel>
+        <Carousel />
       </div>
     </div>
 
@@ -34,42 +16,47 @@
             style="height:100%"
           >
             <b-col md="4" cols="4">
-              <img
-                src="../../../assets/images/camera.png"
-                class="icon"
-                width="150px"
-                height="150px"
-                @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
-                style="cursor: pointer"
-              />
-
+              <div class="zoom-box">
+                <img
+                  src="../../../assets/images/camera.png"
+                  class="icon"
+                  width="150px"
+                  height="150px"
+                  @click="selectedChoice = 'ทรัพยากรการท่องเที่ยว'"
+                  style="cursor: pointer"
+                />
+              </div>
               <div class="text-center">
                 ทรัพยากรการท่องเที่ยว
               </div></b-col
             >
             <b-col md="4" cols="4">
-              <img
-                src="../../../assets/images/bed.png"
-                class="icon"
-                width="150px"
-                height="150px"
-                @click="selectedChoice = 'ที่พัก'"
-                style="cursor: pointer"
-              />
+              <div class="zoom-box">
+                <img
+                  src="../../../assets/images/bed.png"
+                  class="icon"
+                  width="150px"
+                  height="150px"
+                  @click="selectedChoice = 'ที่พัก'"
+                  style="cursor: pointer"
+                />
+              </div>
+
               <div class="text-center">
                 ที่พัก
               </div></b-col
             >
             <b-col md="4" cols="4">
-              <img
-                src="../../../assets/images/dish.png"
-                class="icon"
-                width="150px"
-                height="150px"
-                @click="selectedChoice = 'ร้านอาหาร'"
-                style="cursor: pointer"
-              />
-
+              <div class="zoom-box">
+                <img
+                  src="../../../assets/images/dish.png"
+                  class="icon"
+                  width="150px"
+                  height="150px"
+                  @click="selectedChoice = 'ร้านอาหาร'"
+                  style="cursor: pointer"
+                />
+              </div>
               <div class="text-center">
                 ร้านอาหาร
               </div></b-col
@@ -119,8 +106,12 @@
                   />
                 </b-input-group>
 
-                <div class="text-center">
-                  <b-button class="my-4 w-100" variant="info" @click="search()"
+                <div class="text-center zoom-box">
+                  <b-button
+                    class="my-4 w-100"
+                    variant="info"
+                    @click="search()"
+                    id="search-button"
                     >ค้นหา</b-button
                   >
                 </div>
@@ -381,7 +372,11 @@
 </template>
 <script>
 import api from "@/services/api.js";
+import Carousel from "./Components/HomeCarousel.vue";
 export default {
+  components: {
+    Carousel,
+  },
   name: "home",
   data() {
     return {
@@ -444,7 +439,7 @@ export default {
         },
       ],
       options: [
-        { text: "ทุกอำเภอ", value: "" },
+        { text: "อำเภอ", value: "" },
         "เชียงคาน",
         "เมืองเลย",
         "เอราวัณ",
@@ -460,7 +455,7 @@ export default {
         "วังสะพุง",
         "หนองหิน",
       ],
-      types: [{ text: "ทุกประเภท", value: "" }],
+      types: [{ text: "ประเภท", value: "" }],
       selectedChoice: "ทรัพยากรการท่องเที่ยว",
       choices: [{ color: "orange" }, { color: "green" }, { color: "pink" }],
       result: [],
