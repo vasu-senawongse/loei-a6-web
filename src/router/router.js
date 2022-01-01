@@ -9,6 +9,7 @@ import ContactPage from "../views/pages/Contacts/Contact.vue";
 import OrganizationPage from "../views/pages/Organizations/Organization.vue";
 import IntroductionPage from "../views/pages/Introductions/Introduction.vue";
 import UsagePage from "../views/pages/Usage/Usage.vue";
+import DocumentPage from "../views/pages/Documents/Document.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -76,6 +77,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: UsagePage,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/download-document",
+      name: "document",
+      components: {
+        header: AppHeader,
+        default: DocumentPage,
         footer: AppFooter,
       },
     },

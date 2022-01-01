@@ -58,7 +58,7 @@
           </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
-          <b-nav-item href="#" class="text-center">
+          <b-nav-item href="/download-document" class="text-center">
             <div>
               <img src="../assets/images/download.svg" height="30px" />
             </div>
