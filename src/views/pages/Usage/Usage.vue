@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-body">
     <b-container class="my-5">
       <div class="text-center">
         <img
