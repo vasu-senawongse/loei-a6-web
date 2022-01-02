@@ -15,7 +15,7 @@
             align-v="center"
             style="height:100%"
           >
-            <b-col md="4" cols="4">
+            <b-col md="4" cols="4" class="pl-0">
               <div class="zoom-box">
                 <img
                   src="../../../assets/images/camera.png"
@@ -30,7 +30,7 @@
                 ทรัพยากรการท่องเที่ยว
               </div></b-col
             >
-            <b-col md="4" cols="4">
+            <b-col md="4" cols="4" class="pl-0">
               <div class="zoom-box">
                 <img
                   src="../../../assets/images/bed.png"
@@ -46,7 +46,7 @@
                 ที่พัก
               </div></b-col
             >
-            <b-col md="4" cols="4">
+            <b-col md="4" cols="4" class="pl-0">
               <div class="zoom-box">
                 <img
                   src="../../../assets/images/dish.png"
