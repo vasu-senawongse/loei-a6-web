@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       result: [],
-      apiRoute: `/get-organizations`,
+      apiRoute: `organizations/get-organizations`,
       imgPath:
         process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
     };
