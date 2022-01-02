@@ -87,7 +87,7 @@
             </div>
           </b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="ml-auto text-center">
           <a href="http://43.229.149.124:3000/" target="_blank"
             ><span><b-button variant="warning">ผู้ดูแลระบบ</b-button></span></a
           >

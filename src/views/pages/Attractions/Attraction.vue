@@ -50,6 +50,7 @@
             {{ result.register ? result.register : "-" }}</span
           >
         </b-card-text>
+
         <b-row>
           <b-col cols="6">
             <b-card-text>
