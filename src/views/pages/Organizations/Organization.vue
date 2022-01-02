@@ -1,45 +1,78 @@
 <template>
   <div class="home-body">
+    <h3 class="text-center">
+      หน่วยงาน อพท.
+    </h3>
     <b-row class="justify-content-center m-5">
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a href="https://tis.dasta.or.th/stisdasta/" target="_blank">
-          <img src="../../../assets/images/org1.jpg" width="80%"/></a
+      <b-col
+        cols="12"
+        lg="2"
+        class="zoom-box my-3"
+        v-for="org in result.filter((i) => i.type == 1)"
+        v-bind:key="org.id"
+      >
+        <a :href="org.url" target="_blank">
+          <img :src="imgPath + org.img" width="80%"/></a
       ></b-col>
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a href="https://www.facebook.com/dasta5loei/" target="_blank">
-          <img src="../../../assets/images/org2.jpg" width="80%"/></a
+    </b-row>
+    <h3 class="text-center">
+      หน่วยงานในจังหวััดเลย
+    </h3>
+    <b-row class="justify-content-center m-5">
+      <b-col
+        cols="12"
+        lg="2"
+        class="zoom-box my-3"
+        v-for="org in result.filter((i) => i.type == 2)"
+        v-bind:key="org.id"
+      >
+        <a :href="org.url" target="_blank">
+          <img :src="imgPath + org.img" width="80%"/></a
       ></b-col>
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a href="http://www.loei.go.th/" target="_blank">
-          <img src="../../../assets/images/org3.png" width="80%"/></a
-      ></b-col>
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a href="http://www.loei.mots.go.th/" target="_blank">
-          <img src="../../../assets/images/org4.png" width="80%"/></a
-      ></b-col>
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a href="https://www.facebook.com/TATLoei/" target="_blank">
-          <img src="../../../assets/images/org5.jpg" width="80%"/></a
-      ></b-col>
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a
-          href="https://www.m-culture.go.th/loei/main.php?filename=index"
-          target="_blank"
-        >
-          <img src="../../../assets/images/org6.jpg" width="80%"/></a
-      ></b-col>
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a
-          href="https://loei.prd.go.th/th/page/item/index/id/12"
-          target="_blank"
-        >
-          <img src="../../../assets/images/org7.png" width="80%"/></a
-      ></b-col>
-      <b-col cols="12" lg="2" class="zoom-box my-3">
-        <a href="https://www.dot.go.th/home" target="_blank">
-          <img src="../../../assets/images/org8.png" width="80%"/></a
+    </b-row>
+    <h3 class="text-center">
+      หน่วยงานส่วนกลาง
+    </h3>
+    <b-row class="justify-content-center m-5">
+      <b-col
+        cols="12"
+        lg="2"
+        class="zoom-box my-3"
+        v-for="org in result.filter((i) => i.type == 3)"
+        v-bind:key="org.id"
+      >
+        <a :href="org.url" target="_blank">
+          <img :src="imgPath + org.img" width="80%"/></a
       ></b-col>
     </b-row>
   </div>
 </template>
-<script></script>
+<script>
+import api from "@/services/api.js";
+import { quillEditor } from "vue-quill-editor";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+export default {
+  name: "attraction",
+  components: {
+    quillEditor,
+  },
+  data() {
+    return {
+      result: [],
+      apiRoute: `/get-organizations`,
+      imgPath:
+        process.env.VUE_APP_IMAGE_STORAGE_URL || "http://localhost:5000/images",
+    };
+  },
+  methods: {
+    async fetch() {
+      let res = await api.get(this.apiRoute);
+      this.result = res.data;
+    },
+  },
+  async mounted() {
+    this.fetch();
+  },
+};
+</script>
