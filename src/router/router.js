@@ -10,6 +10,7 @@ import OrganizationPage from "../views/pages/Organizations/Organization.vue";
 import IntroductionPage from "../views/pages/Introductions/Introduction.vue";
 import UsagePage from "../views/pages/Usage/Usage.vue";
 import DocumentPage from "../views/pages/Documents/Document.vue";
+import TransportationPage from "../views/pages/Transportations/Transportation.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -86,6 +87,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: DocumentPage,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/transportation",
+      name: "transportation",
+      components: {
+        header: AppHeader,
+        default: TransportationPage,
         footer: AppFooter,
       },
     },
