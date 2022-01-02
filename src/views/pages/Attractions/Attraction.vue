@@ -52,7 +52,7 @@
         </b-card-text>
 
         <b-row>
-          <b-col cols="6">
+          <b-col cols="12" md="6">
             <b-card-text>
               <span class="mr-3">
                 <i class="fas fa-building" v-if="result.org"></i>
@@ -66,19 +66,29 @@
               <span v-else>-</span>
             </b-card-text></b-col
           >
-          <b-col cols="6">
+          <b-col cols="12" md="6" class="hide-mobile">
             <b-card-text style="float:right">
               <b-button class="mr-3" variant="warning" v-b-modal.suggestion
-                >ข้อเสนอแนะ</b-button
+                ><i class="fa fa-lightbulb mr-1" />ข้อเสนอแนะ</b-button
               >
             </b-card-text>
             <b-card-text style="float:right">
               <b-button class="mr-3" variant="info" v-b-modal.material
-                >ดาวน์โหลดเอกสาร</b-button
+                ><i class="fa fa-download mr-1" />ดาวน์โหลดเอกสาร</b-button
               >
             </b-card-text>
           </b-col>
         </b-row>
+        <div class="my-2 hide-desktop">
+          <b-button class="mr-3 w-100" variant="warning" v-b-modal.suggestion
+            ><i class="fa fa-lightbulb mr-1" />ข้อเสนอแนะ</b-button
+          >
+        </div>
+        <div class="my-2 hide-desktop">
+          <b-button class="mr-3 w-100" variant="info" v-b-modal.material
+            ><i class="fa fa-download mr-1" />ดาวน์โหลดเอกสาร</b-button
+          >
+        </div>
       </b-card>
 
       <h3 v-b-toggle.attraction_info>ข้อมูลแหล่งท่องเที่ยว</h3>
@@ -266,28 +276,15 @@
           responsive
           small
           id="material-list"
-          :per-page="perPage"
-          :current-page="currentPage"
           style="width: 100%"
         >
           <template v-slot:cell(btn)="data">
             <span>
               <a :href="imgPath + data.item.path" target="_blank">
                 <b-button variant="outline-info" class="m-1"
-                  ><i class="fa fa-download mr-1" />ดาวน์โหลด</b-button
-                ></a
-              ></span
-            ></template
-          >
+                  ><i class="fa fa-download mr-1"/></b-button></a></span
+          ></template>
         </b-table>
-
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="material.length"
-          :per-page="perPage"
-          aria-controls="material-list"
-          style="float:right"
-        ></b-pagination>
       </b-modal>
     </div>
 

@@ -258,9 +258,6 @@ body {
   z-index: 2;
 }
 
-.card{
-  max-height: 200px;
-}
 
 .card-body{
   color: #066938 !important;
