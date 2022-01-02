@@ -224,7 +224,7 @@
 
           <template v-slot:cell(btn)="data">
             <span>
-              <a :href="data.item.url"
+              <a :href="data.item.url" target="_blank"
                 ><b-button variant="info" class="m-1"
                   ><i class="fa fa-link"/></b-button
               ></a>
@@ -282,7 +282,7 @@
 
           <template v-slot:cell(btn)="data">
             <span>
-              <a :href="data.item.url"
+              <a :href="data.item.url" target="_blank"
                 ><b-button variant="info" class="m-1"
                   ><i class="fa fa-link"/></b-button
               ></a>
