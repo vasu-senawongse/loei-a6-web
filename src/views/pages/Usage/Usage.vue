@@ -3,7 +3,7 @@
     <b-container class="my-5">
       <div class="text-center">
         <img
-          src="../../../assets/images/qrcode.png"
+          src="../../../assets/images/qrcode.jpg"
           width="200"
           height="100%"
         />
