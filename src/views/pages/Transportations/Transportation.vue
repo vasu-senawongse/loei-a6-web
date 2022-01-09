@@ -21,14 +21,13 @@
           </div>
           <br />
           <div>
-            ระยะทางจากตัวเมืองเลยไปยังอำเภอและกิ่งอำเภอต่าง ๆ
+            ระยะทางจากตัวเมืองเลยไปยังอำเภอ
             <br />• อำเภอวังสะพุง 22 กิโลเมตร <br />• อำเภอนาด้วง 37 กิโลเมตร
             <br />• อำเภอท่าลี่ 46 กิโลเมตร <br />• อำเภอเชียงคาน 48 กิโลเมตร
             <br />• อำเภอภูเรือ 49 กิโลเมตร <br />• อำเภอภูหลวง 50 กิโลเมตร
             <br />• อำเภอภูกระดึง 74 กิโลเมตร <br />• อำเภอด่านซ้าย 82 กิโลเมตร
             <br />• อำเภอปากชม 92 กิโลเมตร <br />• อำเภอผาขาว 112 กิโลเมตร
-            <br />• อำเภอนาแห้ว 117 กิโลเมตร <br />• กิ่งอำเภอเอราวัณ 42
-            กิโลเมตร <br />• กิ่งอำเภอหนองหิน 50 กิโลเมตร
+            <br />• อำเภอนาแห้ว 117 กิโลเมตร
           </div>
         </b-tab>
         <b-tab>
@@ -44,7 +43,57 @@
             อำเภอวังสะพุง ถึงตัวเมืองเลยได้เช่นเดียวกัน
           </p>
         </b-tab>
+        <b-tab>
+          <template v-slot:title>
+            <i class="fas fa-car-side"></i> รถเช่า
+          </template>
+          <b-table
+            hover
+            :items="result"
+            :fields="fields"
+            responsive
+            small
+            id="restaurant-list"
+            :per-page="perPage"
+            :current-page="currentPage"
+            style="width: 100%"
+          >
+            <template v-slot:cell(location)="data">
+              <span>{{ data.item.location }} </span></template
+            >
 
+            <template v-slot:cell(phone)="data">
+              <span v-if="data.item.phone">
+                <a :href="'tel:' + data.item.phone">{{
+                  data.item.phone
+                }}</a></span
+              ></template
+            >
+
+            <template v-slot:cell(btn)="data">
+              <span>
+                <a
+                  :href="data.item.url ? data.item.url : '#'"
+                  :target="data.item.url && '_blank'"
+                  ><b-button
+                    variant="info"
+                    class="m-1"
+                    :disabled="!data.item.url"
+                    ><i class="fa fa-link"/></b-button
+                ></a>
+              </span>
+              <span>
+                <a
+                  :href="
+                    `http://maps.apple.com/maps?q=${data.item.lat},${data.item.lon}`
+                  "
+                  target="_blank"
+                >
+                  <b-button variant="outline-info" class="m-1"
+                    ><i class="fa fa-map-marker"/></b-button></a></span
+            ></template>
+          </b-table>
+        </b-tab>
         <b-tab>
           <template v-slot:title>
             <i class="fa fa-bus"></i> รถโดยสารประจำทาง
@@ -143,31 +192,86 @@
             </b-col>
           </b-row>
         </b-tab>
-
-        <b-tab>
-          <template v-slot:title> <i class="fa fa-train"></i> รถไฟ </template>
-          <p>
-            จังหวัดเลยไม่มีสถานีรถไฟ
-            นักท่องเที่ยวต้องเดินทางไปลงที่สถานีอุดรธานีและต่อรถโดยสารประจำทางไปจังหวัดเลยได้
-            <br />
-            <br />สอบถามตารางรถไฟได้ที่ หน่วยบริการเดินทาง การรถไฟแห่งประเทศไทย
-            <br />
-            <i class="fa fa-phone mr-2" aria-hidden="true"></i>
-            <a href="tel:1690">1690</a>,
-            <a
-              href="tel:02-233
-            7010"
-              >02-2337010</a
-            >, <a href="tel:02-2237020">02-2237020</a><br /><br />
-            สถานีอุดรธานี <br /><i
-              class="fa fa-phone mr-2"
-              aria-hidden="true"
-            ></i>
-            <a href="tel:042-222061">042-222061</a>
-          </p>
-        </b-tab>
       </b-tabs>
     </b-container>
   </div>
 </template>
-<script></script>
+<script>
+export default {
+  name: "transportations",
+  data() {
+    return {
+      fields: [
+        {
+          key: "name",
+          label: "ชื่อ",
+          class: "text-left align-middle w-180",
+          stickyColumn: true,
+        },
+        {
+          key: "location",
+          label: "สถานที่ตั้ง",
+          class: "text-left align-middle w-180",
+        },
+        {
+          key: "phone",
+          label: "เบอร์ติดต่อ",
+          class: "text-left align-middle w-180",
+        },
+        {
+          key: "btn",
+          label: "",
+          class: "text-left align-middle w-180",
+        },
+      ],
+      result: [
+        {
+          name: "เมืองเลยรถเช่า",
+          location:
+            "เลขที่ 38 หมู่ 6 หมู่บ้าน ท่าอากาศยานเลย ตำบล นาอาน อำเภอ เมืองเลย",
+          phone: "08 9276 0950",
+          url: "https://www.facebook.com/CARRENTLOEI",
+          lat: "17.445684567276",
+          lon: "101.726838920805",
+        },
+        {
+          name: "เมืองเลยรถเช่า โดย คุณกร",
+          location:
+            "เลขที่ 38 หมู่ 6 หมู่บ้าน ท่าอากาศยานเลย ตำบล นาอาน อำเภอ เมืองเลย",
+          phone: "08 9710 7768",
+          url:
+            "https://www.facebook.com/%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A5%E0%B8%A2%E0%B8%A3%E0%B8%96%E0%B9%80%E0%B8%8A%E0%B9%88%E0%B8%B2%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%81%E0%B8%A3-2315857558453296/",
+          lat: "17.44571548471",
+          lon: "101.726852582489",
+        },
+        {
+          name: "วรรณิศารถเช่า (ส.เมืองเลยรถเช่า)",
+          location:
+            "เลขที่ 38 หมู่ 6 หมู่บ้าน ท่าอากาศยานเลย ตำบล นาอาน อำเภอ เมืองเลย",
+          phone: "09 0841 3990",
+          url: "https://www.facebook.com/s.carrent/",
+          lat: "17.4455265592992",
+          lon: "101.726996500515",
+        },
+        {
+          name: "ภูพานรถเช่า เมืองเลย",
+          location:
+            "เลขที่ 38 หมู่ 6 หมู่บ้าน ท่าอากาศยานเลย ตำบล นาอาน อำเภอ เมืองเลย",
+          phone: "09 2889 9453",
+          url: "",
+          lat: "17.4456815802027",
+          lon: "101.726841853632",
+        },
+        {
+          name: "เลยรถเช่า",
+          location: "เลขที่ 99/9 ร่วมใจ ซอย 4 ตำบล กุดป่อง อำเภอ เมืองเลย",
+          phone: "08 2559 8151",
+          url: "https://www.facebook.com/loeicarrental",
+          lat: "17.4910871941545",
+          lon: "101.727589085771",
+        },
+      ],
+    };
+  },
+};
+</script>
