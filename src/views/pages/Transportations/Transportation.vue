@@ -192,6 +192,12 @@
             </b-col>
           </b-row>
         </b-tab>
+        <b-tab>
+          <template v-slot:title>
+            <i class="fa fa-exclamation-circle"></i> ติดต่อฉุกเฉิน
+          </template>
+          <p></p>
+        </b-tab>
       </b-tabs>
     </b-container>
   </div>
