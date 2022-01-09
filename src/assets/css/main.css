@@ -298,3 +298,9 @@ body {
   height: 200px !important;
 }
 
+.usage-iframe {
+  width: 100%;
+  max-width: 1024px;
+  max-height: 576px;
+  height: calc(100vw * 0.5625)
+}
