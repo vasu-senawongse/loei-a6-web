@@ -290,6 +290,41 @@
 
     <div>
       <b-modal id="suggestion" title="ข้อเสนอแนะ" size="lg" hide-footer>
+        <div>
+          <b-row class="justify-content-start">
+            <b-col col lg="6" sm="6" cols="12">
+              <b-input
+                alternative
+                class="mb-3"
+                placeholder="ชื่อผู้ติดต่อ"
+                v-model="name"
+              >
+              </b-input>
+            </b-col>
+
+            <b-col col lg="6" sm="6" cols="12">
+              <b-input
+                alternative
+                class="mb-3"
+                placeholder="เบอร์ติดต่อ"
+                v-model="phone"
+              >
+              </b-input>
+            </b-col>
+          </b-row>
+
+          <b-row class="justify-content-start">
+            <b-col col lg="12" sm="12" cols="12">
+              <b-input
+                alternative
+                class="mb-3"
+                placeholder="หัวข้อเรื่อง"
+                v-model="title"
+              >
+              </b-input>
+            </b-col>
+          </b-row>
+        </div>
         <div style="height : 100%">
           <quill-editor
             ref="myQuillEditor"
@@ -297,6 +332,9 @@
             :options="editorOption"
             style="height : 100%"
           />
+        </div>
+        <div class="mt-3 text-right">
+          <b-button variant="success" @click="submit()">ส่งข้อความ</b-button>
         </div>
       </b-modal>
     </div>
@@ -307,6 +345,7 @@ import api from "@/services/api.js";
 import { quillEditor } from "vue-quill-editor";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
+import moment from "moment";
 export default {
   name: "attraction",
   components: {
@@ -315,6 +354,10 @@ export default {
   data() {
     return {
       result: {},
+      contactRoute: "contacts/create-contact",
+      phone: null,
+      name: null,
+      title: null,
       apiRoute: `attractions/get-attraction-by-name/${this.$route.params.name}`,
       imgRoute: `attractions/get-attraction-gallery-by-id/`,
       matRoute: `attractions/get-attraction-material-by-id/`,
@@ -403,6 +446,32 @@ export default {
       if (result) return { "background-color": result.color };
       else {
         return { "background-color": "#808080" };
+      }
+    },
+    async submit() {
+      var message = {
+        name: this.name,
+        type: "INFORM",
+        title: this.title,
+        message: this.content,
+        status: "PENDING",
+        phone: this.phone,
+        createdAt: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+      };
+      let res = await api.post(this.contactRoute, message);
+      this.result = res.data;
+      if (this.result) {
+        this.$swal({
+          title: "ส่งข้อเสนอแนะแล้ว!",
+          text: "ขอบคุณ",
+          icon: "success",
+          confirmButtonText: "Home",
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.$bvModal.hide("suggestion");
+          }
+        });
       }
     },
     async fetch() {

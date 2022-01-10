@@ -54,8 +54,6 @@
             responsive
             small
             id="rent-list"
-            :per-page="perPage"
-            :current-page="currentPage"
             style="width: 100%"
           >
             <template v-slot:cell(location)="data">
@@ -198,13 +196,11 @@
           </template>
           <b-table
             hover
-            :items="result"
-            :fields="fields"
+            :items="result2"
+            :fields="fields2"
             responsive
             small
             id="emergency-list"
-            :per-page="perPage"
-            :current-page="currentPage"
             style="width: 100%"
           >
             <template v-slot:cell(location)="data">
