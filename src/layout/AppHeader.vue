@@ -57,6 +57,7 @@
             </div>
           </b-nav-item>
         </b-navbar-nav>
+
         <b-navbar-nav>
           <b-nav-item href="/download-document" class="text-center">
             <div>
@@ -74,6 +75,19 @@
             </div>
             <div>
               <span class="nav-text">หน่วยงานที่เกี่ยวข้อง</span>
+            </div>
+          </b-nav-item>
+        </b-navbar-nav>
+        <b-navbar-nav>
+          <b-nav-item href="/products" class="text-center">
+            <div>
+              <i
+                class="fas fa-gift"
+                style="font-size: 30px;color : #b3b3b3"
+              ></i>
+            </div>
+            <div>
+              <span class="nav-text">ผลิตภัณฑ์และสินค้า</span>
             </div>
           </b-nav-item>
         </b-navbar-nav>
