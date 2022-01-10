@@ -53,7 +53,7 @@
             :fields="fields"
             responsive
             small
-            id="restaurant-list"
+            id="rent-list"
             :per-page="perPage"
             :current-page="currentPage"
             style="width: 100%"
@@ -196,7 +196,29 @@
           <template v-slot:title>
             <i class="fa fa-exclamation-circle"></i> ติดต่อฉุกเฉิน
           </template>
-          <p></p>
+          <b-table
+            hover
+            :items="result"
+            :fields="fields"
+            responsive
+            small
+            id="emergency-list"
+            :per-page="perPage"
+            :current-page="currentPage"
+            style="width: 100%"
+          >
+            <template v-slot:cell(location)="data">
+              <span>{{ data.item.location }} </span></template
+            >
+
+            <template v-slot:cell(phone)="data">
+              <span v-if="data.item.phone">
+                <a :href="'tel:' + data.item.phone">{{
+                  data.item.phone
+                }}</a></span
+              ></template
+            >
+          </b-table>
         </b-tab>
       </b-tabs>
     </b-container>
@@ -228,6 +250,149 @@ export default {
           key: "btn",
           label: "",
           class: "text-left align-middle w-180",
+        },
+      ],
+      fields2: [
+        {
+          key: "name",
+          label: "ชื่อ",
+          class: "text-left align-middle w-180",
+          stickyColumn: true,
+        },
+        {
+          key: "phone",
+          label: "เบอร์ติดต่อ",
+          class: "text-left align-middle w-180",
+        },
+      ],
+      result2: [
+        {
+          name: "การท่องเที่ยวแห่งประเทศไทย สำนักงานเลย",
+          phone: "0 4281 2812, 0 4281 1405",
+        },
+        {
+          name: "สำนักงานจังหวัดเลย",
+          phone: "0 4283 3209",
+        },
+        {
+          name: "ประชาสัมพันธ์จังหวัดเลย",
+          phone: "0 4281 1258",
+        },
+        {
+          name: "เทศบาลเมืองเลย",
+          phone: "0 4281 1324",
+        },
+        {
+          name: "สถานีขนส่งจังหวัดเลย",
+          phone: "0 4283 3586",
+        },
+        {
+          name: "กู้ภัย มูลนิธิสว่างคีรีธรรม จ.เลย",
+          phone: "0 4281 2094",
+        },
+        {
+          name: "สายด่วนการไฟฟ้า จังหวัดเลย",
+          phone: "0 4281 1202,  0 4281 1356",
+        },
+        {
+          name: "แจ้งเหตุกระแสไฟฟ้าขัดข้อง",
+          phone: "0 4281 1888",
+        },
+        {
+          name: "ตำรวจภูธรจังหวัดเลย",
+          phone: "0 4281 3017",
+        },
+        {
+          name: "สถานีตำรวจภูธรเมืองเลย",
+          phone: "0 4281 1254",
+        },
+        {
+          name: "สถานีตำรวจภูธรด่านซ้าย",
+          phone: "0 4289 1310",
+        },
+        {
+          name: "สถานีตำรวจภูธรเชียงคาน",
+          phone: "0-4282-1181",
+        },
+        {
+          name: "สถานีตำรวจภูธรภูเรือ",
+          phone: "0 4289 9090",
+        },
+        {
+          name: "สถานีตำรวจภูธรท่าลี่",
+          phone: "0 4288 9038",
+        },
+        {
+          name: "สถานีตำรวจภูธรวังสะพุง",
+          phone: "0 4284 1245",
+        },
+        {
+          name: "สถานีตำรวจภูธรภูหลวง",
+          phone: "0 4287 9074",
+        },
+        {
+          name: "สถานีตำรวจภูธรอำเภอภูกระดึง",
+          phone: "0 4287 1024",
+        },
+        {
+          name: "สถานีตำรวจภูธรหนองหิน",
+          phone: "0 4285 2091",
+        },
+        {
+          name: "สถานีตำรวจท่องเที่ยว 6 (เลย)",
+          phone: "0 4286 1164",
+        },
+        {
+          name: "สำนักงานสาธารณสุขจังหวัดเลย",
+          phone: "08 1708 3113",
+        },
+        {
+          name: "โรงพยาบาลเลย",
+          phone: "0 4286 2123",
+        },
+        {
+          name: "โรงพยาบาลจิตเวชเลยราชนครินทร์",
+          phone: "0 4280 8100",
+        },
+        {
+          name: "โรงพยาบาลเมืองเลย ราม",
+          phone: "0 4287 0000",
+        },
+        {
+          name: "โรงพยาบาลสมเด็จพระยุพราช",
+          phone: "0 4289 1314",
+        },
+        {
+          name: "โรงพยาบาลวังสะพุง",
+          phone: "0 4284 1101",
+        },
+        {
+          name: "โรงพยาบาลเชียงคาน",
+          phone: "0 4282 2181",
+        },
+        {
+          name: "โรงพยาบาลภูกระดึง",
+          phone: "0 4287 1016-7",
+        },
+        {
+          name: "รงพยาบาลทําลี่",
+          phone: "0 4288 9035",
+        },
+        {
+          name: "โรงพยาบาลภูเรือ",
+          phone: "0 4289 9072",
+        },
+        {
+          name: "โรงพยาบาลผาขาว",
+          phone: "0 4281 8101-2",
+        },
+        {
+          name: "โรงพยาบาลภูหลวง",
+          phone: "0 4287 9101",
+        },
+        {
+          name: "โรงพยาบาลหนองหิน",
+          phone: "0 4285 2214",
         },
       ],
       result: [
