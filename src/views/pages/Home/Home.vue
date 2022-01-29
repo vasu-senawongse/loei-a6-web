@@ -148,7 +148,7 @@
           </b-col>
           <b-col md="9" cols="12">
             <h3 class="card-text">
-              <a :href="'/attractions/' + p.name.replace(' ', '-')">{{
+              <a :href="'/attractions/' + p.name.replace(/ /g, '-')">{{
                 p.name
               }}</a>
             </h3>
