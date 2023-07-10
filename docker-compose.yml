@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     volumes:
       - .:/app
+      - /app/node_modules
       - ./docker/nginx:/etc/nginx/config.d
     ports:
       - '80:80'
