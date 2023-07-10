@@ -2,7 +2,7 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --global windows-build-tools
+RUN npm install
 COPY . .
 RUN npm run build
 
