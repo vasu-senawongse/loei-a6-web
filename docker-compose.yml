@@ -8,7 +8,7 @@ services:
     container_name: data-a6
     restart: unless-stopped
     volumes:
-      - .:/app
+      - .:/usr/src/app
       - ./docker/nginx:/etc/nginx/config.d
     ports:
       - '80:80'
