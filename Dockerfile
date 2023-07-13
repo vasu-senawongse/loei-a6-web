@@ -1,9 +1,5 @@
 # build stage
 FROM node:lts-alpine as build-stage
-RUN set -eux; apk add --no-cache curl;
-RUN npm cache clean && \
-    npm install -g npm@latest && \
-    npm install
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
